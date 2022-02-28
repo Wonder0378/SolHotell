@@ -1,1 +1,2 @@
 print("Cool")
+print("Boy")
