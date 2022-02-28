@@ -1,1 +1,14 @@
 samuels och marcus puseodokod
+
+tkinter window öppnas
+
+olika rum visas
+
+om användaren vill ha information om rummet så hätmas det från en textfil
+
+genom ett knapptryck kan användaren boka ett rum
+
+bokningar sparas i en textfil
+
+när användaren loggar ut får man ett meddelande och tkinter fönstret stängs
+
