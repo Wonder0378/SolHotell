@@ -2,13 +2,25 @@ samuels och marcus puseodokod
 
 tkinter window öppnas
 
-olika rum visas
+window visar alternativen 'Checka in', 'Checka Ut'
 
-om användaren vill ha information om rummet så hätmas det från en textfil
+Vid incheckning:
 
-genom ett knapptryck kan användaren boka ett rum
+    olika rum visas
 
-bokningar sparas i en textfil
+    om användaren vill ha information om rummet så hätmas det från en textfil
+
+    genom ett knapptryck kan användaren boka ett rum
+
+    bokningar sparas i en textfil
+
+Vid utcheckning:
+
+    rummet visas
+
+    användaren får frågan om hen vill checka ut eller inte
+
+    bokningen tas bort från textfilen
 
 när användaren loggar ut får man ett meddelande och tkinter fönstret stängs
 
