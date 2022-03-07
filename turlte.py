@@ -1,15 +1,17 @@
+from tkinter import CENTER
 import turtle
 from turtle import *
 
 #preperation
+hideturtle()
 width(7)
-speed(7)
-bgcolor("black")
-pencolor("white")
+speed(0)
+bgcolor("medium blue")
+pencolor("gold")
 up()
 backward(250)
 left(90)
-forward(200)
+forward(100)
 left(180)
 
 #H
@@ -127,7 +129,29 @@ forward(200)
 up()
 forward(30)
 down()
-forward(180)
 
-hideturtle()
+forward(180)
+right(90)
+
+#move
+up()
+left(180)
+forward(50)
+left(90)
+forward(210)
+
+#write välkommen åter
+turtle.color('gold')
+style = ('Brush Script MT', 30, 'italic')
+turtle.write('Välkommen åter!', font=style)
+
+#move
+left(90)
+forward(300)
+
+#write sammy's solhotell
+#turtle.color('orange')
+#style = ('Arial', 30,)
+#turtle.write('SAMMMYS SOLHOTELL', font=style, align=CENTER)
+
 done()
