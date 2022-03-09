@@ -4,19 +4,19 @@ Date: 18-02-2022
 Info:
 <Insert information about file>
 """
+
 from tkinter import *
 import tkinter.messagebox as msgbox
 root=Tk()
 from turtle import *
 class Main:
-
     root.wm_attributes('-transparentcolor', 'grey')
     #sets the variable pic to the name of a picture in the direcotry
     pic = PhotoImage(file="SolHotell/pictures/finstrand.png")
 
     def view():
         pass
-    
+
     def disable_event():
         pass
 
@@ -200,13 +200,15 @@ class Main:
     my_button.place(relx=0.9, rely=0.9)
 
     #creates the view our rooms button
-    my_rooms = Button(root, text="Veiw our rooms", width=20, command=view)
+    my_rooms = Button(root, text="UPPTÄCK VÅRA RUM", width=20, command=view, bg="orange", fg="white", font="Arial")
     my_rooms.place(relx=0.2, rely=0.5)
 
     #creates the check out button
-    my_checkout = Button(root, text="Ckeckout", width=20)
-    my_checkout.place(relx=0.2, rely=0.575)
+    my_checkout = Button(root, text="CHECKA UT", width=20, command="checkout", bg="orange", fg="white", font="Arial")
+    my_checkout.place(relx=0.2, rely=0.6)
 
+    new_label = Label(root)
+    new_label.place(relx=0.3, rely=0.5)
     #root.protocol("WM_DELETEWINDOW", disable_event)
 
 root.mainloop()
