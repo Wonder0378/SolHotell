@@ -27,7 +27,7 @@ class Test():
         self.bg_label = tk.Label(self.root, image=self.pic)
         self.bg_label.place(x=0, y=0, relheight=1, relwidth=1)
 
-        self.header_label = tk.Label(self.root, text="☀" + "Sammy's" + " "*3 + "solhotell" + "☀", fg="orange", font=("Broadway", 50), bg='medium blue')
+        self.header_label = tk.Label(self.root, text="☀" + "Sammys" + " "*3 + "solhotell" + "☀", fg="orange", font=("Broadway", 50), bg='medium blue')
 
         self.button = tk.Button(self.root, text="Click to change text below",command=self.changeText)
 
