@@ -12,10 +12,10 @@ self.whatthisis_what-type-of-tkinter-element-thtis-is
 """
 
 #importing everythinig from tkinter 
+from encodings import utf_8
 from enum import auto
 import tkinter as tk
 from tkinter import *
-from turtle import width
 
 #everything will be udner this main class
 class Main():
@@ -53,19 +53,21 @@ class Main():
         self.information_frame = tk.Frame(self.root, background="yellow")
 
         #creating the label that will show information about the deluxeroom
-        self.deluxeroom_label = tk.Label(self.information_frame, textvariable=self.text)
-        self.deluxeroom_label.pack()
+        self.roominformation_label = tk.Label(self.information_frame, textvariable=self.text, font=("Arial", 10))
 
         #creating a button that will be used to show information about the luxurious room
-        self.deluxeroom_info_button = tk.Button(self.information_frame, text="Deluxerum", command=self.deluxe_info)
+        self.deluxeroom_info_button = tk.Button(self.information_frame, text="Deluxerum", command=self.deluxe_info, padx=30, font=("Arial", 12))
         #this bit of code lets ut hide the button until we need it
         self.deluxeroom_info_button.pack_forget()
 
-        self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum")
+        self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum", command=self.standard_info, padx=30, font=("Arial", 12))
         self.economyroom_info_button.pack_forget()
 
-        self.familyroom_info_button = tk.Button(self.information_frame, text="Familjerum")
+        self.familyroom_info_button = tk.Button(self.information_frame, text="Familjerum", command=self.family_info, padx=30, font=("Arial", 12))
         self.familyroom_info_button.pack_forget()
+        
+        self.closeinfoframe_button = tk.Button(self.information_frame, text="x", command=self.closeinfoframe, fg=("red"), font=("Arial", 12))
+        self.closeinfoframe_button.pack_forget()
 
         #packing all the tkinter elements and palcing them
         self.header_label.place(relx=0.5, rely=0.3, anchor=CENTER)
@@ -83,17 +85,30 @@ class Main():
 
     #funtion
     def view(self):
-        self.text.set("Information visas här")
         self.information_frame.place(relx=0.4, rely=0.5)
-        self.deluxeroom_info_button.pack()
-        self.economyroom_info_button.pack()
-        self.familyroom_info_button.pack()
+        self.deluxeroom_info_button.grid(row=0, column=0)
+        self.economyroom_info_button.grid(row=0, column=1)
+        self.familyroom_info_button.grid(row=0, column=2)
+        self.text.set("Klicka på någon av knapparna för att få information om det rummet")
+        self.roominformation_label.grid(row=1, column=0, columnspan=4)
+        self.closeinfoframe_button.grid(row=0, column=3)
 
     #function
     def checkout(self):
         pass
 
     def deluxe_info(self):
+        f=open('SolHotell/deluxeroom.txt', encoding='utf-8')
+        newtext= "\n" + f.read() + "\n"
+        self.text.set(newtext)
+    
+    def standard_info(self):
+        pass
+
+    def family_info(self):
+        pass
+
+    def closeinfoframe(self):
         pass
 
 app=Main()
