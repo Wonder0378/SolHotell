@@ -49,6 +49,22 @@ class Main():
         #creating a button that will let the user check out
         self.checkout_button = tk.Button(self.root, text="CHECKA UT", width=20, command=self.checkout, bg="orange", fg="white", font="Arial")
 
+        #packing all the tkinter elements and palcing them
+        self.header_label.place(relx=0.5, rely=0.3, anchor=CENTER)
+        self.exit_button.place(relx=0.9, rely=0.9)
+        self.room_button.place(relx=0.2, rely=0.5)
+        self.checkout_button.place(relx=0.2, rely=0.6)
+
+    #function that makes the program run
+    def run(self):
+        self.root.mainloop()
+
+    #function that closes the tkinter window
+    def escape(self):
+        self.root.destroy()
+
+    #funtion
+    def view(self):
         #creating the frame that will contain infromation about the room
         self.information_frame = tk.Frame(self.root, background="yellow")
 
@@ -69,22 +85,6 @@ class Main():
         self.closeinfoframe_button = tk.Button(self.information_frame, text="x", command=self.closeinfoframe, fg=("red"), font=("Arial", 12))
         self.closeinfoframe_button.pack_forget()
 
-        #packing all the tkinter elements and palcing them
-        self.header_label.place(relx=0.5, rely=0.3, anchor=CENTER)
-        self.exit_button.place(relx=0.9, rely=0.9)
-        self.room_button.place(relx=0.2, rely=0.5)
-        self.checkout_button.place(relx=0.2, rely=0.6)
-
-    #function that makes the program run
-    def run(self):
-        self.root.mainloop()
-
-    #function that closes the tkinter window
-    def escape(self):
-        self.root.destroy()
-
-    #funtion
-    def view(self):
         self.information_frame.place(relx=0.4, rely=0.5)
         self.deluxeroom_info_button.grid(row=0, column=0)
         self.economyroom_info_button.grid(row=0, column=1)
@@ -98,18 +98,22 @@ class Main():
         pass
 
     def deluxe_info(self):
-        f=open('SolHotell/deluxeroom.txt', encoding='utf-8')
-        newtext= "\n" + f.read() + "\n"
+        f=open('SolHotell/z_deluxeroom.txt', encoding='utf-8')
+        newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
     
     def standard_info(self):
-        pass
+        f=open('SolHotell/z_standardroom.txt', encoding='utf-8')
+        newtext = "\n" + f.read() + "\n"
+        self.text.set(newtext)
 
     def family_info(self):
-        pass
+        f=open('SolHotell/z_familyroom.txt', encoding='utf-8')
+        newtext = "\n" + f.read() + "\n"
+        self.text.set(newtext)
 
     def closeinfoframe(self):
-        pass
+        self.information_frame.destroy()
 
 app=Main()
 app.run()
