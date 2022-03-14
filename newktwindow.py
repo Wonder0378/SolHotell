@@ -12,8 +12,6 @@ self.whatthisis_what-type-of-tkinter-element-thtis-is
 """
 
 #importing everythinig from tkinter 
-from encodings import utf_8
-from enum import auto
 import tkinter as tk
 from tkinter import *
 
@@ -63,7 +61,7 @@ class Main():
     def escape(self):
         self.root.destroy()
 
-    #funtion
+    #funtion to view all different rooms
     def view(self):
         #creating the frame that will contain infromation about the room
         self.information_frame = tk.Frame(self.root, background="yellow")
@@ -76,20 +74,24 @@ class Main():
         #this bit of code lets ut hide the button until we need it
         self.deluxeroom_info_button.pack_forget()
 
+        #creating a button that will display informatoin about the standard room
         self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum", command=self.standard_info, padx=30, font=("Arial", 12))
         self.economyroom_info_button.pack_forget()
-
+        
+        #creating a button that will display information about the family room
         self.familyroom_info_button = tk.Button(self.information_frame, text="Familjerum", command=self.family_info, padx=30, font=("Arial", 12))
         self.familyroom_info_button.pack_forget()
-        
+
+        #creating a button that will be closing the information frame
         self.closeinfoframe_button = tk.Button(self.information_frame, text="x", command=self.closeinfoframe, fg=("red"), font=("Arial", 12))
         self.closeinfoframe_button.pack_forget()
 
+        #creating the information frame and packing everythin
         self.information_frame.place(relx=0.4, rely=0.5)
-        self.deluxeroom_info_button.grid(row=0, column=0)
-        self.economyroom_info_button.grid(row=0, column=1)
+        self.economyroom_info_button.grid(row=0, column=0)
+        self.deluxeroom_info_button.grid(row=0, column=1)
         self.familyroom_info_button.grid(row=0, column=2)
-        self.text.set("Klicka på någon av knapparna för att få information om det rummet")
+        self.text.set( "\n Klicka på någon av knapparna för att få information om det rummet \n")
         self.roominformation_label.grid(row=1, column=0, columnspan=4)
         self.closeinfoframe_button.grid(row=0, column=3)
 
@@ -97,23 +99,44 @@ class Main():
     def checkout(self):
         pass
 
+    #function for viewing information about the deluxe room
     def deluxe_info(self):
+        #opening the file that will contain the information we want to show
         f=open('SolHotell/z_deluxeroom.txt', encoding='utf-8')
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
+        #creating and adding a button that will be used for booking a room
+        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"))
+        self.book_button.grid(row=3, column=1)
     
     def standard_info(self):
+        #opening the file that will contain the information we want to show
         f=open('SolHotell/z_standardroom.txt', encoding='utf-8')
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
+        #creating and adding a button that will be used for booking a room
+        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"))
+        self.book_button.grid(row=3, column=1)
 
     def family_info(self):
+        #creating and adding a button that will be used for booking a room
         f=open('SolHotell/z_familyroom.txt', encoding='utf-8')
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
+        #creating and adding a button that will be used for booking a room
+        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"))
+        self.book_button.grid(row=3, column=1)
 
+    #funtion that will close the information frame
     def closeinfoframe(self):
+        #the information frame will be destroyed, it will be created again when the show information button will be clicked
         self.information_frame.destroy()
 
+    #function that books the room
+    def bookroom(self):
+        pass
+
+#setting 'app' to equal main
 app=Main()
+#using the run funciton on app
 app.run()

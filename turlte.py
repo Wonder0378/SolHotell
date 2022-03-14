@@ -1,4 +1,3 @@
-from tkinter import CENTER
 import turtle
 from turtle import *
 
@@ -148,10 +147,5 @@ turtle.write('Välkommen åter!', font=style)
 #move
 left(90)
 forward(300)
-
-#write sammy's solhotell
-#turtle.color('orange')
-#style = ('Arial', 30,)
-#turtle.write('SAMMMYS SOLHOTELL', font=style, align=CENTER)
 
 done()
