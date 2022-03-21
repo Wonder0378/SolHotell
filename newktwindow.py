@@ -68,7 +68,7 @@ class Main():
         self.information_frame = tk.Frame(self.root, background="#E7E0DB")
 
         #creating the label that will show information about the deluxeroom
-        self.roominformation_label = tk.Label(self.information_frame, textvariable=self.text, font=("Arial", 10), bg="#E7E0DB")
+        self.roominformation_frame = tk.Frame(self.information_frame, background="#E7E0DB")
 
         #creating a button that will be used to show information about the luxurious room
         self.deluxeroom_info_button = tk.Button(self.information_frame, text="Deluxerum", command=self.deluxe_info, padx=30, font=("Arial", 12), bg=self.carrot, fg="white")
@@ -93,7 +93,7 @@ class Main():
         self.deluxeroom_info_button.grid(row=0, column=1)
         self.familyroom_info_button.grid(row=0, column=2)
         self.text.set( "\n Klicka på någon av knapparna för att få information om det rummet \n")
-        self.roominformation_label.grid(row=1, column=0, columnspan=4)
+        self.roominformation_frame.grid(row=1, column=0, columnspan=4)
         self.closeinfoframe_button.grid(row=0, column=3)
 
     #function

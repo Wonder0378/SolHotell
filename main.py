@@ -1,2 +1,0 @@
-print("Cool")
-print("Boy")
