@@ -17,18 +17,22 @@ from tkinter import *
 class Main():
     def __init__(self):
 
+        self.title = "Solhotellet, Marcus och Samuel"
+
         #creating the root where everything will be placed
         self.root = tk.Tk()
 
         #defining the pic that will later be the background image
         self.pic = PhotoImage(file="SolHotell/pictures/finstrand.png")
 
-        self.carrot = "#ff8e00"
-        self.blue = "#003f7d"
-        self.orange = "#fd7702"
-        self.mandarin = "#ff5003"
-        self.sky = "#5b84c4"
-        self.white = "#ebebeb"
+        self.carrot = "#ff8e00" #lightest orange
+        self.orange = "#fd7702" #medium orange
+        self.mandarin = "#ff5003" #darkest orange
+
+        self.sky = "#5b84c4" #lightest blue
+        self.blue = "#003f7d" #darkest blue
+
+        self.white = "#ebebeb" #white/grey
 
         self.text = tk.StringVar()
         self.text.set("")
@@ -41,7 +45,7 @@ class Main():
         self.bg_label.place(x=0, y=0, relheight=1, relwidth=1)
 
         #creating the label with the headline
-        self.header_label = tk.Label(self.root, text="☀" + "Sammys" + " "*3 + "solhotell" + "☀", bg=self.blue, fg=self.carrot, font=("Broadway", 50))
+        self.header_label = tk.Label(self.root, text="☀" + "SAMMYS" + " "*3 + "SOLHOTELL" + "☀", bg=self.blue, fg=self.carrot, font=("Broadway", 50))
 
         #creating the exit button, this button will have the command escape
         self.exit_button = tk.Button(self.root, text="EXIT", command=self.escape, width=10, bg=self.carrot, fg="black")

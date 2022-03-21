@@ -5,8 +5,8 @@ from turtle import *
 hideturtle()
 width(7)
 speed(0)
-bgcolor("medium blue")
-pencolor("gold")
+bgcolor("#003f7d")
+pencolor("#ff8e00")
 up()
 backward(250)
 left(90)
@@ -140,7 +140,7 @@ left(90)
 forward(210)
 
 #write välkommen åter
-turtle.color('gold')
+turtle.color('#fd7702')
 style = ('Brush Script MT', 30, 'italic')
 turtle.write('Välkommen åter!', font=style)
 
