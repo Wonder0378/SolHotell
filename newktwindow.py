@@ -34,6 +34,7 @@ class Main():
 
         self.white = "#ebebeb" #white/grey
 
+        #text variable
         self.text = tk.StringVar()
         self.text.set("")
 
