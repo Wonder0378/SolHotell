@@ -25,6 +25,10 @@ class Main():
 
         self.carrot = "#ff8e00"
         self.blue = "#003f7d"
+        self.orange = "#fd7702"
+        self.mandarin = "#ff5003"
+        self.sky = "#5b84c4"
+        self.white = "#ebebeb"
 
         self.text = tk.StringVar()
         self.text.set("")
@@ -43,10 +47,10 @@ class Main():
         self.exit_button = tk.Button(self.root, text="EXIT", command=self.escape, width=10, bg=self.carrot, fg="black")
 
         #creating a button wich will show all the rooms
-        self.roominfo_button = tk.Button(self.root, text="UPPTÄCK VÅRA RUM", width=20, command=self.view, bg=self.carrot, fg="white", font="Arial")
+        self.roominfo_button = tk.Button(self.root, text="CHECKA IN", width=20, command=self.view, bg=self.carrot, fg=self.white, font="Arial")
 
         #creating a button that will let the user check out
-        self.checkout_button = tk.Button(self.root, text="CHECKA UT", width=20, command=self.checkout, bg=self.carrot, fg="white", font="Arial")
+        self.checkout_button = tk.Button(self.root, text="CHECKA UT", width=20, command=self.checkout, bg=self.carrot, fg=self.white, font="Arial")
 
         #packing all the tkinter elements and palcing them
         self.header_label.place(relx=0.5, rely=0.3, anchor=CENTER)
@@ -65,22 +69,22 @@ class Main():
     #funtion to view all different rooms
     def view(self):
         #creating the frame that will contain infromation about the room
-        self.information_frame = tk.Frame(self.root, background="#E7E0DB")
+        self.information_frame = tk.Frame(self.root, background=self.white)
 
         #creating the label that will show information about the deluxeroom
-        self.roominformation_label = tk.Label(self.information_frame, textvariable=self.text, font=("Arial", 10), bg="#E7E0DB")
+        self.roominformation_label = tk.Label(self.information_frame, textvariable=self.text, font=("Arial", 10), bg=self.white)
 
         #creating a button that will be used to show information about the luxurious room
-        self.deluxeroom_info_button = tk.Button(self.information_frame, text="Deluxerum", command=self.deluxe_info, padx=30, font=("Arial", 12), bg=self.carrot, fg="white")
+        self.deluxeroom_info_button = tk.Button(self.information_frame, text="Deluxerum", command=self.deluxe_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
         #this bit of code lets ut hide the button until we need it
         self.deluxeroom_info_button.pack_forget()
 
         #creating a button that will display informatoin about the standard room
-        self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum", command=self.standard_info, padx=30, font=("Arial", 12), bg=self.carrot, fg="white")
+        self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum", command=self.standard_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
         self.economyroom_info_button.pack_forget()
         
         #creating a button that will display information about the family room
-        self.familyroom_info_button = tk.Button(self.information_frame, text="Familjerum", command=self.family_info, padx=30, font=("Arial", 12), bg=self.carrot, fg="white")
+        self.familyroom_info_button = tk.Button(self.information_frame, text="Familjerum", command=self.family_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
         self.familyroom_info_button.pack_forget()
 
         #creating a button that will be closing the information frame
@@ -106,7 +110,7 @@ class Main():
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
         #creating and adding a button that will be used for booking a room
-        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg="white")
+        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
         self.book_button.grid(row=3, column=1)
 
     #function for viewing information about the deluxe room
@@ -116,7 +120,7 @@ class Main():
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
         #creating and adding a button that will be used for booking a room
-        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg="white")
+        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
         self.book_button.grid(row=3, column=1)
 
     #function for viewing information about the family room
@@ -126,7 +130,7 @@ class Main():
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
         #creating and adding a button that will be used for booking a room
-        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg="white")
+        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
         self.book_button.grid(row=3, column=1)
 
     #funtion that will close the information frame
