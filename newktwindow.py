@@ -1,7 +1,8 @@
 """
-Name: Samuel Hellqvist and Marcus Hedquist
+Created by: Samuel Hellqvist and Marcus Hedquist
 Date: 09-03-2022
 Info:
+
 new file for the hotel
 everything is given name like this:
 
@@ -34,6 +35,8 @@ class Main():
 
         self.white = "#ebebeb" #white/grey
 
+        self.secondarybtn = "green"
+        self.red = "red"
         #text variable
         self.text = tk.StringVar()
         self.text.set("")
@@ -79,14 +82,14 @@ class Main():
         #creating the label that will show information about the deluxeroom
         self.roominformation_frame = tk.Frame(self.information_frame, background="#E7E0DB")
 
+        #creating a button that will display informatoin about the standard room
+        self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum", command=self.standard_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
+        self.economyroom_info_button.pack_forget()
+
         #creating a button that will be used to show information about the luxurious room
         self.deluxeroom_info_button = tk.Button(self.information_frame, text="Deluxerum", command=self.deluxe_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
         #this bit of code lets ut hide the button until we need it
         self.deluxeroom_info_button.pack_forget()
-
-        #creating a button that will display informatoin about the standard room
-        self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum", command=self.standard_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
-        self.economyroom_info_button.pack_forget()
         
         #creating a button that will display information about the family room
         self.familyroom_info_button = tk.Button(self.information_frame, text="Familjerum", command=self.family_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
@@ -105,23 +108,14 @@ class Main():
         self.roominformation_frame.grid(row=1, column=0, columnspan=4)
         self.closeinfoframe_button.grid(row=0, column=3)
 
-    #function
+    #function for checkout
     def checkout(self):
         pass
     
+    #function for viewing information about the standard room
     def standard_info(self):
         #opening the file that will contain the information we want to show
         f=open('SolHotell/z_standardroom.txt', encoding='utf-8')
-        newtext = "\n" + f.read() + "\n"
-        self.text.set(newtext)
-        #creating and adding a button that will be used for booking a room
-        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
-        self.book_button.grid(row=3, column=1)
-
-    #function for viewing information about the deluxe room
-    def deluxe_info(self):
-        #opening the file that will contain the information we want to show
-        f=open('SolHotell/z_deluxeroom.txt', encoding='utf-8')
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
         #creating and adding a button that will be used for booking a room
@@ -132,6 +126,16 @@ class Main():
     def family_info(self):
         #creating and adding a button that will be used for booking a room
         f=open('SolHotell/z_familyroom.txt', encoding='utf-8')
+        newtext = "\n" + f.read() + "\n"
+        self.text.set(newtext)
+        #creating and adding a button that will be used for booking a room
+        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
+        self.book_button.grid(row=3, column=1)
+
+    #function for viewing information about the deluxe room
+    def deluxe_info(self):
+        #opening the file that will contain the information we want to show
+        f=open('SolHotell/z_deluxeroom.txt', encoding='utf-8')
         newtext = "\n" + f.read() + "\n"
         self.text.set(newtext)
         #creating and adding a button that will be used for booking a room

@@ -1,4 +1,7 @@
 """
+Created by: Marcus Hedquist
+Date: 21-03-22
+
 type = rumstyp (standard, Deluxe, Familjerum)
 rooms = antal rum i "rummet"
 beds = antal sängar
