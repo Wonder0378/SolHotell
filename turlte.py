@@ -1,3 +1,13 @@
+"""
+Created by: Samuel Hellqvist and Marcus Hedquist
+Date: 09-03-2022
+Info:
+
+file that draws a turtle canvas
+this will be used in the hotell project
+
+"""
+
 import turtle
 from turtle import *
 
