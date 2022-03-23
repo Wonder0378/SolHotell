@@ -12,10 +12,13 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 #importing everythinig from tkinter 
 import tkinter as tk
 from tkinter import *
+from bookunbook import Room
+from random import randint
 
 #everything will be udner this main class
 class Main():
     def __init__(self):
+        self.__roomids = []
 
         self.title = "Solhotellet, Marcus och Samuel"
 
@@ -62,6 +65,53 @@ class Main():
         self.exit_button.place(relx=0.9, rely=0.9)
         self.roominfo_button.place(relx=0.2, rely=0.5)
         self.checkout_button.place(relx=0.2, rely=0.6)
+
+
+    def roomid(self):
+        while True:
+            id = randint(1000, 9999)
+
+            if id in self.__roomids:
+                pass
+            else:
+                break
+
+        return id
+
+
+    def getrooms(self):
+        #Inserting rooms
+
+        self.__standardrooms = []
+        self.__deluxerooms = []
+        self.__familyrooms = []
+
+        try:
+            with open("rooms.txt", "r", encoding="utf-8") as text:
+                for i, line in enumerate(text.readlines()):
+                    if line.endswith("\n"):
+                        line = line.replace("\n", "")
+                        """
+                        Här krävs algoritm för att avtyda strängen man
+                        får från textfilen för att sedan skapa objekt
+                        med datan
+                        """
+
+
+        except:
+            for i in range(1, 5):
+                self.__standardrooms.append(Room(1, randint(1, 4), randint(2, 4), randint(0, 1), 1, randint(0, 1), self.roomid()))
+                self.__deluxerooms.append(Room(2, randint(4, 6), randint(2, 4), 1, randint(2, 4), 1, self.roomid()))
+                self.__familyrooms.append(Room(3, randint(3, 5), randint(3, 4), 1, randint(1, 4), randint(0, 1), self.roomid()))
+
+            for i in self.__standardrooms:
+                i.register()
+            for i in self.__deluxerooms:
+                i.register()
+            for i in self.__familyrooms:
+                i.register()
+
+
 
     #function that makes the program run
     def run(self):
