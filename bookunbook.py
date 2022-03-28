@@ -61,7 +61,7 @@ class Room:
         file_open.write("{}\n".format(self.string))
 
     def appear(self, frame, order):
-        self.booktext = tk.Label(frame, text="Room 1", background="transparent")
+        self.booktext = tk.Label(frame, text="Room {}, type {}".format(order, self.type), background="blue")
         self.booktext.grid(column=1, row=order)
         """
         Här kommer rummens utseende
