@@ -19,6 +19,7 @@ from random import randint
 class Main():
     def __init__(self):
         self.__roomids = []
+        self.getrooms()
 
         self.title = "Solhotellet, Marcus och Samuel"
 
@@ -91,11 +92,21 @@ class Main():
                 for i, line in enumerate(text.readlines()):
                     if line.endswith("\n"):
                         line = line.replace("\n", "")
-                        """
-                        Här krävs algoritm för att avtyda strängen man
-                        får från textfilen för att sedan skapa objekt
-                        med datan
-                        """
+
+                    type = int(line[2:3])
+                    rooms = int(line[4:5])
+                    beds = int(line[6:7])
+                    wifi = int(line[8:9])
+                    bld = int(line[10:11])
+                    fridge = int(line[12:13])
+                    roomid = int(line[14:18])
+
+                    if type == 1:
+                        self.__standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                    elif type == 2:
+                        self.__deluxerooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                    elif type == 3:
+                        self.__familyrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
 
         except:
@@ -110,7 +121,6 @@ class Main():
                 i.register()
             for i in self.__familyrooms:
                 i.register()
-
 
 
     #function that makes the program run
@@ -161,20 +171,38 @@ class Main():
     
     #function for viewing information about the standard room
     def standard_info(self):
-        #opening the file that will contain the information we want to show
-        f=open('SolHotell/z_standardroom.txt', encoding='utf-8')
-        newtext = "\n" + f.read() + "\n"
-        self.text.set(newtext)
+        #Placing the rooms
+        for index, i in enumerate(self.__standardrooms):
+            i.appear(self.roominformation_frame, (index+1))
+
+        try:
+            for i in self.__deluxerooms:
+                i.booktext.pack_forget()
+            for i in self.__familyrooms:
+                i.booktext.pack_forget()
+        except:
+            pass
+
         #creating and adding a button that will be used for booking a room
         self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
         self.book_button.grid(row=3, column=1)
 
+
+
     #function for viewing information about the family room
     def family_info(self):
         #creating and adding a button that will be used for booking a room
-        f=open('SolHotell/z_familyroom.txt', encoding='utf-8')
-        newtext = "\n" + f.read() + "\n"
-        self.text.set(newtext)
+        for index, i in enumerate(self.__familyrooms):
+            i.appear(self.roominformation_frame, (index+1))
+
+        try:
+            for i in self.__deluxerooms:
+                i.booktext.pack_forget()
+            for i in self.__standardrooms:
+                i.booktext.pack_forget()
+        except:
+            pass
+
         #creating and adding a button that will be used for booking a room
         self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
         self.book_button.grid(row=3, column=1)
@@ -182,9 +210,17 @@ class Main():
     #function for viewing information about the deluxe room
     def deluxe_info(self):
         #opening the file that will contain the information we want to show
-        f=open('SolHotell/z_deluxeroom.txt', encoding='utf-8')
-        newtext = "\n" + f.read() + "\n"
-        self.text.set(newtext)
+        for index, i in enumerate(self.__deluxerooms):
+            i.appear(self.roominformation_frame, (index+1))
+
+        try:
+            for i in self.__standardrooms:
+                i.booktext.pack_forget()
+            for i in self.__familyrooms:
+                i.booktext.pack_forget()
+        except:
+            pass
+
         #creating and adding a button that will be used for booking a room
         self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
         self.book_button.grid(row=3, column=1)
