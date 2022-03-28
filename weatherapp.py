@@ -1,6 +1,3 @@
-from email import header
-
-
 """
 Name: Samuel Hellqvist
 Date: 23-03-2022

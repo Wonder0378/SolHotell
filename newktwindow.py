@@ -7,7 +7,6 @@ new file for the hotel
 everything is given name like this:
 
 self.what-this-is_what-type-of-tkinter-element-thtis-is
-
 """
 
 #importing everythinig from tkinter 
@@ -39,8 +38,6 @@ class Main():
 
         self.white = "#ebebeb" #white/grey
 
-        self.secondarybtn = "green"
-        self.red = "red"
         #text variable
         self.text = tk.StringVar()
         self.text.set("")
