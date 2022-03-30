@@ -85,7 +85,7 @@ class Room:
 
         self.front = tk.Label(self.booktext, text=type+"room")
         self.moreinfo = tk.Label(self.booktext, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
-        self.pic = PhotoImage(file="SolHotell/pictures/finstrand.png", width=50, height=50)
+        self.pic = PhotoImage(file="SolHotell/pictures/familjerum.png", width=50, height=50)
         self.image = tk.Label(self.booktext, image=self.pic)
         #self.bookbtn = tk.Button(self.booktext, text="Book")
     
