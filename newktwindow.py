@@ -88,7 +88,7 @@ class Main():
         self.__familyrooms = []
 
         try:
-            with open("rooms.txt", "r", encoding="utf-8") as text:
+            with open("SolHotell/rooms.txt", "r", encoding="utf-8") as text:
                 for i, line in enumerate(text.readlines()):
                     if line.endswith("\n"):
                         line = line.replace("\n", "")

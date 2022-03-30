@@ -46,14 +46,14 @@ class Room:
         self.str_room = "R{}".format(self.roomid)
 
     def register(self):
-        room_open = open('rooms.txt', 'w', encoding='utf-8')
+        room_open = open('SolHotell/rooms.txt', 'a', encoding='utf-8')
 
         self.string = self.str_t+self.str_r+self.str_b+self.str_w+self.str_bld+self.str_f+self.str_room
 
         room_open.write("{}\n".format(self.string))
 
     def book(self, id):
-        file_open = open('bookroom.txt', 'w')
+        file_open = open('../bookroom.txt', 'a')
 
         self.str_id = "i{}".format(id)
         self.string = self.str_t+self.str_r+self.str_b+self.str_w+self.str_bld+self.str_f+self.str_room+self.str_id
@@ -61,8 +61,13 @@ class Room:
         file_open.write("{}\n".format(self.string))
 
     def appear(self, frame, order):
-        self.booktext = tk.Label(frame, text="Room {}, type {}".format(order, self.type), background="blue")
-        self.booktext.grid(column=1, row=order)
+        self.booktext = tk.Frame(frame)
+        self.booktext.grid(column=1, row=order, columnspan=4, pady=10)
+
+        self.front = tk.Label(self.booktext, text="Room {}, type {}".format(order, self.type))
+        self.moreinfo = tk.Label(self.booktext, text="Rooms: {} | Beds: {}".format(self.rooms, self.beds))
+        self.front.grid(column=1, row=1)
+        self.moreinfo.grid(column=1, row=2)
         """
         Här kommer rummens utseende
         visas, frame = roominformation_frame
