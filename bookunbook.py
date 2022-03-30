@@ -60,14 +60,38 @@ class Room:
 
         file_open.write("{}\n".format(self.string))
 
-    def appear(self, frame, order):
+    def appear(self, frame, order, type):
         self.booktext = tk.Frame(frame)
-        self.booktext.grid(column=1, row=order, columnspan=4, pady=10)
+        self.booktext.grid(column=0, row=order, columnspan=10, pady=10)
 
-        self.front = tk.Label(self.booktext, text="Room {}, type {}".format(order, self.type))
-        self.moreinfo = tk.Label(self.booktext, text="Rooms: {} | Beds: {}".format(self.rooms, self.beds))
-        self.front.grid(column=1, row=1)
-        self.moreinfo.grid(column=1, row=2)
+        if self.wifi == 1:
+            iswifi = "Free Wifi"
+        else:
+            iswifi = "No Wifi"
+
+        if self.fridge == 1:
+            isfridge = "Fridge"
+        else:
+            isfridge = "No Fridge"
+
+        if self.bld == 0:
+            bld = "No breakfast"
+        elif self.bld == 1:
+            bld = "Breakfast"
+        elif self.bld == 2:
+            bld = "Breakfast and lunch"
+        else:
+            bld = "Breakfast, lunch and dinner"
+
+        self.front = tk.Label(self.booktext, text=type+"room")
+        self.moreinfo = tk.Label(self.booktext, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
+        self.pic = PhotoImage(file="SolHotell/pictures/finstrand.png", width=50, height=50)
+        self.image = tk.Label(self.booktext, image=self.pic)
+    
+        self.image.grid(column=0, row=1, rowspan=3, columnspan=3)
+        self.front.grid(column=3, row=1, columnspan=5)
+        self.moreinfo.grid(column=3, row=3, columnspan=5)
+        
         """
         Här kommer rummens utseende
         visas, frame = roominformation_frame

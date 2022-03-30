@@ -93,13 +93,13 @@ class Main():
                     if line.endswith("\n"):
                         line = line.replace("\n", "")
 
-                    type = int(line[2:3])
-                    rooms = int(line[4:5])
-                    beds = int(line[6:7])
-                    wifi = int(line[8:9])
-                    bld = int(line[10:11])
-                    fridge = int(line[12:13])
-                    roomid = int(line[14:18])
+                    type = int(line[1:2])
+                    rooms = int(line[3:4])
+                    beds = int(line[5:6])
+                    wifi = int(line[7:8])
+                    bld = int(line[9:10])
+                    fridge = int(line[11:12])
+                    roomid = int(line[13:17])
 
                     if type == 1:
                         self.__standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
@@ -108,7 +108,7 @@ class Main():
                     elif type == 3:
                         self.__familyrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
-
+        
         except:
             for i in range(1, 5):
                 self.__standardrooms.append(Room(1, randint(1, 4), randint(2, 4), randint(0, 1), 1, randint(0, 1), self.roomid()))
@@ -121,7 +121,7 @@ class Main():
                 i.register()
             for i in self.__familyrooms:
                 i.register()
-
+        
 
     #function that makes the program run
     def run(self):
@@ -162,7 +162,7 @@ class Main():
         self.deluxeroom_info_button.grid(row=0, column=1)
         self.familyroom_info_button.grid(row=0, column=2)
         self.text.set( "\n Klicka på någon av knapparna för att få information om det rummet \n")
-        self.roominformation_frame.grid(row=1, column=0, columnspan=4)
+        self.roominformation_frame.grid(row=1, column=0, columnspan=10, sticky="w"+"e")
         self.closeinfoframe_button.grid(row=0, column=3)
 
     #function for checkout
@@ -173,7 +173,7 @@ class Main():
     def standard_info(self):
         #Placing the rooms
         for index, i in enumerate(self.__standardrooms):
-            i.appear(self.roominformation_frame, (index+1))
+            i.appear(self.roominformation_frame, (index+1), "standard")
 
         try:
             for i in self.__deluxerooms:
@@ -193,7 +193,7 @@ class Main():
     def family_info(self):
         #creating and adding a button that will be used for booking a room
         for index, i in enumerate(self.__familyrooms):
-            i.appear(self.roominformation_frame, (index+1))
+            i.appear(self.roominformation_frame, (index+1), "family")
 
         try:
             for i in self.__deluxerooms:
@@ -211,7 +211,7 @@ class Main():
     def deluxe_info(self):
         #opening the file that will contain the information we want to show
         for index, i in enumerate(self.__deluxerooms):
-            i.appear(self.roominformation_frame, (index+1))
+            i.appear(self.roominformation_frame, (index+1), "deluxe")
 
         try:
             for i in self.__standardrooms:
