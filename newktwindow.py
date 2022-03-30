@@ -12,9 +12,6 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 #importing everythinig from tkinter 
 import tkinter as tk
 from tkinter import *
-from turtle import left
-
-from numpy import e
 from bookunbook import Room
 from random import randint
 
