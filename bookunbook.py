@@ -62,7 +62,7 @@ class Room:
 
     def appear(self, frame, order, type):
         self.booktext = tk.Frame(frame)
-        self.booktext.grid(column=0, row=order, columnspan=10, pady=10)
+        self.booktext.pack(pady=5)
 
         if self.wifi == 1:
             iswifi = "Free Wifi"
@@ -87,10 +87,12 @@ class Room:
         self.moreinfo = tk.Label(self.booktext, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.pic = PhotoImage(file="SolHotell/pictures/finstrand.png", width=50, height=50)
         self.image = tk.Label(self.booktext, image=self.pic)
+        #self.bookbtn = tk.Button(self.booktext, text="Book")
     
         self.image.grid(column=0, row=1, rowspan=3, columnspan=3)
         self.front.grid(column=3, row=1, columnspan=5)
         self.moreinfo.grid(column=3, row=3, columnspan=5)
+        #self.bookbtn.grid(column=8, row=1, columnspan=2, rowspan=3, sticky="e")
         
         """
         Här kommer rummens utseende
