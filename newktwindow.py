@@ -64,20 +64,14 @@ class Main():
         #skapar en headline
         self.header_label = tk.Label(self.root, text="☀" + "SAMMYS" + " "*3 + "SOLHOTELL" + "☀", bg=self.blue, fg=self.carrot, font=("Broadway", 50))
 
-<<<<<<< HEAD
         try: 
             #skapar en widget där hotellets nuvarande väder skrivs ut
             weather = GetWeather()
             self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + weather.tempText + "°C" + "\n" + weather.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
         except:
             pass
+        
         #creating the exit button, this button will have the command escape
-=======
-        #skapar en widget där hotellets nuvarande väder skrivs ut
-        self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + weather.tempText + "°C" + "\n" + weather.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
-
-        #skapar en exit-knapp som kommer ha command self.escape
->>>>>>> 22ea538d4a064ffc1965a6b6c170bc120e6695c2
         self.exit_button = tk.Button(self.root, text="EXIT", command=self.escape, width=10, bg=self.carrot, fg="black")
 
         #skapar en knapp som visar alla rum
