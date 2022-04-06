@@ -14,6 +14,12 @@ import tkinter as tk
 from tkinter import *
 from bookunbook import Room
 from random import randint
+"""
+Name: Samuel Hellqvist
+Date: 23-03-2022
+Info:
+This is a weather app that will display what weather it is somewhere in the world
+"""
 
 #everything will be udner this main class
 class Main():
@@ -22,6 +28,33 @@ class Main():
         self.getrooms()
 
         self.title = "Solhotellet, Marcus och Samuel"
+
+        import requests
+
+        #api-nyckeln används för att få tillgång till data om vädret från hela världen
+        api_key = '647606470e7d8926da64ece5273d596b'
+
+        #vårat hotell ligger i staden Victoria på Sychellerna och därför är inputen Victoria
+        input_ = ("Victoria")
+
+        #data om vädret i Victoria hämtas
+        weather_data = requests.get(
+            f"https://api.openweathermap.org/data/2.5/weather?q={input_}&units=imperial&APPID={api_key}")
+
+        #variabler sätts
+        self.weather = weather_data.json()['weather'][0]['main']
+        self.temp = weather_data.json()['main']['temp']
+
+        #variablerna är annars på engelska men översätts här till svenska
+        if self.weather == ("Clear"):
+            self.weather = ("Klart")
+        elif self.weather == ("Clouds"):
+            self.weather = ("Molnigt")
+
+        #temperaturen räknas om från fahrenheit till celcius
+        self.temp2 = self.temp-32
+        self.tempCelcius = round(self.temp2*0.5556)
+        self.tempText = str(self.tempCelcius)
 
         #creating the root where everything will be placed
         self.root = tk.Tk()
@@ -52,6 +85,9 @@ class Main():
         #creating the label with the headline
         self.header_label = tk.Label(self.root, text="☀" + "SAMMYS" + " "*3 + "SOLHOTELL" + "☀", bg=self.blue, fg=self.carrot, font=("Broadway", 50))
 
+        #skapar en widget där hotellets nuvarande väder skrivs ut
+        self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + self.tempText + "°C" + "\n" + self.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
+
         #creating the exit button, this button will have the command escape
         self.exit_button = tk.Button(self.root, text="EXIT", command=self.escape, width=10, bg=self.carrot, fg="black")
 
@@ -62,7 +98,8 @@ class Main():
         self.checkout_button = tk.Button(self.root, text="CHECKA UT", width=20, command=self.checkout, bg=self.carrot, fg=self.white, font="Arial")
 
         #packing all the tkinter elements and palcing them
-        self.header_label.place(relx=0.5, rely=0.3, anchor=CENTER)
+        self.header_label.place(relx=0.5, rely=0.17, anchor=CENTER)
+        self.weather_label.place(relx=0.145, rely=0.3)
         self.exit_button.place(relx=0.9, rely=0.9)
         self.roominfo_button.place(relx=0.2, rely=0.5)
         self.checkout_button.place(relx=0.2, rely=0.6)
@@ -162,7 +199,7 @@ class Main():
         self.deluxeroom_info_button.grid(row=0, column=1)
         self.familyroom_info_button.grid(row=0, column=2)
         self.text.set( "\n Klicka på någon av knapparna för att få information om det rummet \n")
-        self.roominformation_frame.grid(row=1, column=0, columnspan=10, sticky="w"+"e")
+        self.roominformation_frame.grid(row=1, column=0, columnspan=5, sticky="w")
         self.closeinfoframe_button.grid(row=0, column=3)
 
     #function for checkout
@@ -183,10 +220,6 @@ class Main():
         except:
             pass
 
-        #creating and adding a button that will be used for booking a room
-        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
-        self.book_button.grid(row=3, column=1)
-
 
 
     #function for viewing information about the family room
@@ -203,10 +236,6 @@ class Main():
         except:
             pass
 
-        #creating and adding a button that will be used for booking a room
-        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
-        self.book_button.grid(row=3, column=1)
-
     #function for viewing information about the deluxe room
     def deluxe_info(self):
         #opening the file that will contain the information we want to show
@@ -220,10 +249,6 @@ class Main():
                 i.booktext.pack_forget()
         except:
             pass
-
-        #creating and adding a button that will be used for booking a room
-        self.book_button = tk.Button(self.information_frame, text="Boka", command=self.bookroom, font=("Arial"), bg=self.carrot, fg=self.white)
-        self.book_button.grid(row=3, column=1)
 
     #funtion that will close the information frame
     def closeinfoframe(self):

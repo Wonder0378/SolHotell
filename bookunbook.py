@@ -13,7 +13,9 @@ personid = bokningsid
 import tkinter as tk
 from tkinter import * 
 
+
 class Room:
+    
     """
     Klass för att skapa rummen till hotellet
     """
@@ -29,6 +31,14 @@ class Room:
         @param roomid: Id för rummet (int)
         @return: void
         """
+        #färger
+        self.carrot = "#ff8e00" #lightest orange
+        self.orange = "#fd7702" #medium orange
+        self.mandarin = "#ff5003" #darkest orange
+        self.sky = "#5b84c4" #lightest blue
+        self.blue = "#003f7d" #darkest blue
+        self.white = "#ebebeb" #white/grey
+        
         self.type = type
         self.rooms = rooms
         self.beds = beds
@@ -83,15 +93,15 @@ class Room:
         else:
             bld = "Breakfast, lunch and dinner"
 
-        self.front = tk.Label(self.booktext, text=type+"room")
-        self.moreinfo = tk.Label(self.booktext, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
+        self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
+        self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.pic = PhotoImage(file="SolHotell/pictures/familjerum.png", width=50, height=50)
-        self.image = tk.Label(self.booktext, image=self.pic)
+        self.image = tk.Button(self.booktext, text="BOKA", bg=self.carrot, fg=self.white, font="Arial, 10", padx=20)
         #self.bookbtn = tk.Button(self.booktext, text="Book")
     
-        self.image.grid(column=0, row=1, rowspan=3, columnspan=3)
-        self.front.grid(column=3, row=1, columnspan=5)
-        self.moreinfo.grid(column=3, row=3, columnspan=5)
+        self.image.grid(column=5, row=1,)
+        self.front.grid(column=0, row=0)
+        self.moreinfo.grid(column=0, row=1)
         #self.bookbtn.grid(column=8, row=1, columnspan=2, rowspan=3, sticky="e")
         
         """

@@ -7,7 +7,7 @@ This is a weather app that will display what weather it is somewhere in the worl
 
 import requests
 
-#api-nyckeln används för att få tillgång till data om vädret överallt i världen ifrån
+#api-nyckeln används för att få tillgång till data om vädret från hela världen
 api_key = '647606470e7d8926da64ece5273d596b'
 
 #vårat hotell ligger i staden Victoria på Sychellerna och därför är inputen Victoria
