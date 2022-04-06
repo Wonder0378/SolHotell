@@ -14,6 +14,11 @@ import tkinter as tk
 from tkinter import *
 from bookunbook import Room
 from random import randint
+
+try:
+    from getweather import GetWeather
+except: 
+    pass
 """
 Name: Samuel Hellqvist
 Date: 23-03-2022
@@ -85,9 +90,13 @@ class Main():
         #creating the label with the headline
         self.header_label = tk.Label(self.root, text="☀" + "SAMMYS" + " "*3 + "SOLHOTELL" + "☀", bg=self.blue, fg=self.carrot, font=("Broadway", 50))
 
-        #skapar en widget där hotellets nuvarande väder skrivs ut
-        self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + self.tempText + "°C" + "\n" + self.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
-
+        try: 
+            #creates a widget where the current weather at the hotel is shown
+            weather = GetWeather()
+            self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + weather.tempText + "°C" + "\n" + weather.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
+        except:
+            pass
+        
         #creating the exit button, this button will have the command escape
         self.exit_button = tk.Button(self.root, text="EXIT", command=self.escape, width=10, bg=self.carrot, fg="black")
 
@@ -99,7 +108,10 @@ class Main():
 
         #packing all the tkinter elements and palcing them
         self.header_label.place(relx=0.5, rely=0.17, anchor=CENTER)
-        self.weather_label.place(relx=0.145, rely=0.3)
+        try: 
+            self.weather_label.place(relx=0.145, rely=0.3)
+        except:
+            pass
         self.exit_button.place(relx=0.9, rely=0.9)
         self.roominfo_button.place(relx=0.2, rely=0.5)
         self.checkout_button.place(relx=0.2, rely=0.6)
@@ -124,7 +136,7 @@ class Main():
         self.__deluxerooms = []
         self.__familyrooms = []
 
-        try:
+        try: # Checks if there are any already registered rooms in the hotel
             with open("SolHotell/rooms.txt", "r", encoding="utf-8") as text:
                 for i, line in enumerate(text.readlines()):
                     if line.endswith("\n"):
@@ -146,8 +158,8 @@ class Main():
                         self.__familyrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
         
-        except:
-            for i in range(1, 5):
+        except: # If file hasn't been created, or is empty, an exception will be made
+            for i in range(1, 5): # And 4 rooms of every kind will be created
                 self.__standardrooms.append(Room(1, randint(1, 4), randint(2, 4), randint(0, 1), 1, randint(0, 1), self.roomid()))
                 self.__deluxerooms.append(Room(2, randint(4, 6), randint(2, 4), 1, randint(2, 4), 1, self.roomid()))
                 self.__familyrooms.append(Room(3, randint(3, 5), randint(3, 4), 1, randint(1, 4), randint(0, 1), self.roomid()))
