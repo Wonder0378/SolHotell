@@ -63,7 +63,7 @@ class Room:
         room_open.write("{}\n".format(self.string))
 
     def book(self, id):
-        file_open = open('../bookroom.txt', 'a')
+        file_open = open('SolHotell/bookroom.txt', 'a')
 
         self.str_id = "i{}".format(id)
         self.string = self.str_t+self.str_r+self.str_b+self.str_w+self.str_bld+self.str_f+self.str_room+self.str_id
