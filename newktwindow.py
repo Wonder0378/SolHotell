@@ -9,7 +9,7 @@ everything is given name like this:
 self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
-#importar det som programmet behöver 
+#importing everything that will be used in the program
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
@@ -31,7 +31,7 @@ class Main():
 
         import requests
 
-        #api-nyckeln används för att få tillgång till data om vädret från hela världen
+        #the api key will be used to collect data about the weather from anywhere in the world
         api_key = '647606470e7d8926da64ece5273d596b'
 
         #vårat hotell ligger i staden Victoria på Sychellerna och därför är inputen Victoria
