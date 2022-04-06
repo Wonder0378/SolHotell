@@ -64,16 +64,16 @@ class Main():
         #skapar en widget där hotellets nuvarande väder skrivs ut
         self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + weather.tempText + "°C" + "\n" + weather.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
 
-        #creating the exit button, this button will have the command escape
+        #skapar en exit-knapp som kommer ha command self.escape
         self.exit_button = tk.Button(self.root, text="EXIT", command=self.escape, width=10, bg=self.carrot, fg="black")
 
-        #creating a button wich will show all the rooms
+        #skapar en knapp som visar alla rum
         self.roominfo_button = tk.Button(self.root, text="CHECKA IN", width=20, command=self.view, bg=self.carrot, fg=self.white, font="Arial")
 
-        #creating a button that will let the user check out
+        #skapar en knapp som kommer användas när man vill chekca ut
         self.checkout_button = tk.Button(self.root, text="CHECKA UT", width=20, command=self.checkout, bg=self.carrot, fg=self.white, font="Arial")
 
-        #packing all the tkinter elements and palcing them
+        #placerar alla tkinter element
         self.header_label.place(relx=0.5, rely=0.17, anchor=CENTER)
         self.weather_label.place(relx=0.145, rely=0.3)
         self.exit_button.place(relx=0.9, rely=0.9)
@@ -136,40 +136,38 @@ class Main():
                 i.register()
         
 
-    #function that makes the program run
+    #funktion som gör att programmet körs
     def run(self):
         self.root.mainloop()
 
-    #function that closes the tkinter window
+    #funktion som stänger programmet genom att ta bort rooten
     def escape(self):
         self.root.destroy()
 
-    #funtion to view all different rooms
+    #funktion för att se alla rummen
     def view(self):
-        #creating the frame that will contain infromation about the room
+        #skapar en frames
         self.information_frame = tk.Frame(self.root, background=self.white)
-
-        #creating the label that will show information about the deluxeroom
         self.roominformation_frame = tk.Frame(self.information_frame, background="#E7E0DB")
 
-        #creating a button that will display informatoin about the standard room
+        #en knapp som kommer att visa information om standard-rummet
         self.economyroom_info_button = tk.Button(self.information_frame, text="Standardrum", command=self.standard_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
         self.economyroom_info_button.pack_forget()
 
-        #creating a button that will be used to show information about the luxurious room
+        #en knapp som kommer att visa information om lyx-rummet
         self.deluxeroom_info_button = tk.Button(self.information_frame, text="Deluxerum", command=self.deluxe_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
         #this bit of code lets ut hide the button until we need it
         self.deluxeroom_info_button.pack_forget()
         
-        #creating a button that will display information about the family room
+        #en knapp som kommer att visa information om familje-rummet
         self.familyroom_info_button = tk.Button(self.information_frame, text="Familjerum", command=self.family_info, padx=30, font=("Arial", 12), bg=self.sky, fg=self.white)
         self.familyroom_info_button.pack_forget()
 
-        #creating a button that will be closing the information frame
+        #en knapp som stänger new informations-rutan
         self.closeinfoframe_button = tk.Button(self.information_frame, text="x", command=self.closeinfoframe, fg="red", font=("Arial", 12))
         self.closeinfoframe_button.pack_forget()
 
-        #creating the information frame and packing everythin
+        #packar och placerar alla emelent
         self.information_frame.place(relx=0.4, rely=0.5)
         self.economyroom_info_button.grid(row=0, column=0)
         self.deluxeroom_info_button.grid(row=0, column=1)
@@ -178,11 +176,11 @@ class Main():
         self.roominformation_frame.grid(row=1, column=0, columnspan=5, sticky="w")
         self.closeinfoframe_button.grid(row=0, column=3)
 
-    #function for checkout
+    #checka-ut funktion
     def checkout(self):
         pass
     
-    #function for viewing information about the standard room
+    #funktion för att visa information om standard-rummet
     def standard_info(self):
         #Placing the rooms
         for index, i in enumerate(self.__standardrooms):
@@ -198,7 +196,7 @@ class Main():
 
 
 
-    #function for viewing information about the family room
+    #funktion för att visa information om familje-rummet
     def family_info(self):
         #creating and adding a button that will be used for booking a room
         for index, i in enumerate(self.__familyrooms):
@@ -212,9 +210,8 @@ class Main():
         except:
             pass
 
-    #function for viewing information about the deluxe room
+    #funktion för att visa information om lyx-rummet
     def deluxe_info(self):
-        #opening the file that will contain the information we want to show
         for index, i in enumerate(self.__deluxerooms):
             i.appear(self.roominformation_frame, (index+1), "deluxe")
 
@@ -226,16 +223,14 @@ class Main():
         except:
             pass
 
-    #funtion that will close the information frame
+    #funktion som kommer att stänga informations-rutan
     def closeinfoframe(self):
-        #the information frame will be destroyed, it will be created again when the show information button will be clicked
         self.information_frame.destroy()
 
-    #function that books the room
+    #funktion för att boka ett rum
     def bookroom(self):
         pass
 
-#setting 'app' to equal main
+#kör tkinter-förnstret
 app=Main()
-#using the run funciton on app
 app.run()
