@@ -12,6 +12,8 @@ personid = bokningsid
 """
 import tkinter as tk
 from tkinter import * 
+from random import randint
+from tkinter import messagebox as msgbox
 
 
 class Room:
@@ -69,6 +71,9 @@ class Room:
         self.string = self.str_t+self.str_r+self.str_b+self.str_w+self.str_bld+self.str_f+self.str_room+self.str_id
 
         file_open.write("{}\n".format(self.string))
+        msgbox.showinfo("Your Room is booked", "Your booking number is: " + str(id))
+        self.booktext.pack_forget()
+        
 
     def appear(self, frame, order, type):
         self.booktext = tk.Frame(frame)
@@ -96,10 +101,10 @@ class Room:
         self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
         self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.pic = PhotoImage(file="SolHotell/pictures/familjerum.png", width=50, height=50)
-        self.image = tk.Button(self.booktext, text="BOKA", bg=self.carrot, fg=self.white, font="Arial, 10", padx=20)
+        self.bookbtn = tk.Button(self.booktext, text="BOKA", command=lambda : self.book(randint(1, 1000)), bg=self.carrot, fg=self.white, font="Arial, 10", padx=20)
         #self.bookbtn = tk.Button(self.booktext, text="Book")
     
-        self.image.grid(column=5, row=1,)
+        self.bookbtn.grid(column=5, row=1,)
         self.front.grid(column=0, row=0)
         self.moreinfo.grid(column=0, row=1)
         #self.bookbtn.grid(column=8, row=1, columnspan=2, rowspan=3, sticky="e")

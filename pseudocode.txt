@@ -14,6 +14,9 @@ Vid incheckning:
 
     bokningar sparas i en textfil
 
+    När man bokar ett rum så ska rummet försvinna från rumlistan och läggas
+    till i boklistan, när rummet sedan avbokas så ska det återgå till rumlistan.
+
 Vid utcheckning:
 
     rummet visas
