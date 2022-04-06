@@ -13,6 +13,7 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
+from getweather import GetWeather
 from random import randint
 """
 Name: Samuel Hellqvist
@@ -28,33 +29,7 @@ class Main():
         self.getrooms()
 
         self.title = "Solhotellet, Marcus och Samuel"
-
-        import requests
-
-        #api-nyckeln används för att få tillgång till data om vädret från hela världen
-        api_key = '647606470e7d8926da64ece5273d596b'
-
-        #vårat hotell ligger i staden Victoria på Sychellerna och därför är inputen Victoria
-        input_ = ("Victoria")
-
-        #data om vädret i Victoria hämtas
-        weather_data = requests.get(
-            f"https://api.openweathermap.org/data/2.5/weather?q={input_}&units=imperial&APPID={api_key}")
-
-        #variabler sätts
-        self.weather = weather_data.json()['weather'][0]['main']
-        self.temp = weather_data.json()['main']['temp']
-
-        #variablerna är annars på engelska men översätts här till svenska
-        if self.weather == ("Clear"):
-            self.weather = ("Klart")
-        elif self.weather == ("Clouds"):
-            self.weather = ("Molnigt")
-
-        #temperaturen räknas om från fahrenheit till celcius
-        self.temp2 = self.temp-32
-        self.tempCelcius = round(self.temp2*0.5556)
-        self.tempText = str(self.tempCelcius)
+        weather = GetWeather()
 
         #creating the root where everything will be placed
         self.root = tk.Tk()
@@ -86,7 +61,7 @@ class Main():
         self.header_label = tk.Label(self.root, text="☀" + "SAMMYS" + " "*3 + "SOLHOTELL" + "☀", bg=self.blue, fg=self.carrot, font=("Broadway", 50))
 
         #skapar en widget där hotellets nuvarande väder skrivs ut
-        self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + self.tempText + "°C" + "\n" + self.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
+        self.weather_label = tk.Label(self.root, text="Vädret på hotellet just nu: \n" + weather.tempText + "°C" + "\n" + weather.weather, bg=self.sky, fg=self.white, font=("Arial, 11"))
 
         #creating the exit button, this button will have the command escape
         self.exit_button = tk.Button(self.root, text="EXIT", command=self.escape, width=10, bg=self.carrot, fg="black")
