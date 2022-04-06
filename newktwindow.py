@@ -9,7 +9,7 @@ everything is given name like this:
 self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
-#importing everythinig from tkinter 
+#importar det som programmet behöver 
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
@@ -22,7 +22,7 @@ Info:
 This is a weather app that will display what weather it is somewhere in the world
 """
 
-#everything will be udner this main class
+#hela programmet kommer att skriva under denna main class
 class Main():
     def __init__(self):
         self.__roomids = []
@@ -31,12 +31,13 @@ class Main():
         self.title = "Solhotellet, Marcus och Samuel"
         weather = GetWeather()
 
-        #creating the root where everything will be placed
+        #root, där alltig kommer sättas
         self.root = tk.Tk()
 
-        #defining the pic that will later be the background image
+        #sätter pic till en bild
         self.pic = PhotoImage(file="SolHotell/pictures/finstrand.png")
 
+        #sätter olika frägvariabler som kommer att användas senare
         self.carrot = "#ff8e00" #lightest orange
         self.orange = "#fd7702" #medium orange
         self.mandarin = "#ff5003" #darkest orange
@@ -46,18 +47,18 @@ class Main():
 
         self.white = "#ebebeb" #white/grey
 
-        #text variable
+        #text variabel
         self.text = tk.StringVar()
         self.text.set("")
 
-        #making sure that the tkinter window will be in fullscreen
+        #sätter skärmen till fullskärm
         self.root.attributes("-fullscreen", True)
 
-        #creating the background label that will make the background to the image
+        #sätter en label som blir bakgrundsbilden
         self.bg_label = tk.Label(self.root, image=self.pic)
         self.bg_label.place(x=0, y=0, relheight=1, relwidth=1)
 
-        #creating the label with the headline
+        #skapar en headline
         self.header_label = tk.Label(self.root, text="☀" + "SAMMYS" + " "*3 + "SOLHOTELL" + "☀", bg=self.blue, fg=self.carrot, font=("Broadway", 50))
 
         #skapar en widget där hotellets nuvarande väder skrivs ut
