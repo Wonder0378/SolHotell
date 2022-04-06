@@ -9,7 +9,11 @@ everything is given name like this:
 self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
+<<<<<<< HEAD
 #imports what the program needs
+=======
+#importing everything that will be used in the program
+>>>>>>> 37c7dab564631915839b5804f7e8d4910f46a16f
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
