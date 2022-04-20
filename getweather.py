@@ -9,27 +9,27 @@ import requests
 class GetWeather:
     def __init__(self):
 
-        #api-nyckeln används för att få tillgång till data om vädret från hela världen
+        #the api key can be used to access information about the wather anywhere in the world
         api_key = '647606470e7d8926da64ece5273d596b'
 
-        #vårat hotell ligger i staden Victoria på Sychellerna och därför är inputen Victoria
+        #our hotell is located in the city Victoria so therefore the input is victoria
         input_ = ("Victoria")
 
-        #data om vädret i Victoria hämtas
+        #data about the weather in Victoria is being collected from the open api
         weather_data = requests.get(
             f"https://api.openweathermap.org/data/2.5/weather?q={input_}&units=imperial&APPID={api_key}")
 
-        #variabler sätts
+        #the variables is being set to the information
         self.weather = weather_data.json()['weather'][0]['main']
         self.temp = weather_data.json()['main']['temp']
 
-        #variablerna är annars på engelska men översätts här till svenska
+        #translating the data from english to swedish
         if self.weather == ("Clear"):
             self.weather = ("Klart")
         elif self.weather == ("Clouds"):
             self.weather = ("Molnigt")
 
-        #temperaturen räknas om från fahrenheit till celcius
+        #the temperature is getting recalculated from fahrenheit to celcuis
         self.temp2 = self.temp-32
         self.tempCelcius = round(self.temp2*0.5556)
         self.tempText = str(self.tempCelcius)

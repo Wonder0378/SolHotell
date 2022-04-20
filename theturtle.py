@@ -7,14 +7,14 @@ file that draws a turtle canvas
 this will be used in the hotell project
 
 """
-
 import turtle
 from turtle import *
+
 
 #preperation
 hideturtle()
 width(7)
-speed(0)
+speed(10)
 bgcolor("#003f7d")
 pencolor("#ff8e00")
 up()
@@ -149,10 +149,12 @@ forward(50)
 left(90)
 forward(210)
 
+
 #write välkommen åter
 turtle.color('#fd7702')
 style = ('Brush Script MT', 30, 'italic')
 turtle.write('Välkommen åter!', font=style)
+
 
 #move
 left(90)
