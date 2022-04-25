@@ -157,6 +157,10 @@ class Main():
 
     #funtion to view all different rooms
     def view(self):
+        try:
+            self.closeinfoframe()
+        except:
+            pass
         #creating the frame that will contain infromation about the room
         self.information_frame = tk.Frame(self.root, background=self.white)
 
@@ -191,6 +195,10 @@ class Main():
 
     #function for checkout
     def checkout(self):
+        try:
+            self.closeinfoframe()
+        except:
+            pass
         #creating the frame that will contain infromation about the room
         self.information_frame = tk.Frame(self.root, background=self.white)
 
@@ -204,8 +212,11 @@ class Main():
         #creating the information frame and packing everythin
         self.information_frame.place(relx=0.4, rely=0.5)
         self.roominformation_frame.grid(row=1, column=0, columnspan=5, sticky="w")
-        self.closeinfoframe_button.grid(row=0, column=3)
+        self.closeinfoframe_button.grid(row=0, column=5, columnspan=5)
 
+        self.unbook()
+
+    def unbook(self):
         """
         Here, the person will be asked to log in so that their data can be compared
         to the registered users in the text file. 
@@ -222,7 +233,7 @@ class Main():
                 name, mail, street, indate, outdate, id = line.split('|')
 
                 if str(name) == str(loginname) and str(mail) == str(loginmail):
-                    with open("SolHotell/bookrooms.txt", "r") as booked:
+                    with open("SolHotell/bookroom.txt", "r") as booked:
                         for i, room in enumerate(booked.readlines()):
                             if room.endswith("\n"):
                                 room = room.replace("\n", "")
@@ -238,8 +249,8 @@ class Main():
 
                                 self.__bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
-                                for i in self.__bookedrooms:
-                                    i.unbookappear(self.roominformation_frame, indate, outdate)
+                        for i in self.__bookedrooms:
+                            i.unbookappear(self.roominformation_frame, type, indate, outdate)
     
     
     #function for viewing information about the standard room
