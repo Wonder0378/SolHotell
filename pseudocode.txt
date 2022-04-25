@@ -14,7 +14,15 @@ Vid incheckning:
 
     bokningar sparas i en textfil
 
+    användaren måste dock logga in, och dennes uppgifter sparas i en annan fil
+
+    När man bokar ett rum så ska rummet försvinna från rumlistan och läggas
+    till i boklistan, när rummet sedan avbokas så ska det återgå till rumlistan.
+
 Vid utcheckning:
+
+    personen loggar in, och personuppgifterna matchas mot filen med personer, som sedan
+    matchar med rummen
 
     rummet visas
 

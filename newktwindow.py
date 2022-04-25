@@ -191,7 +191,36 @@ class Main():
 
     #function for checkout
     def checkout(self):
-        pass
+        """
+        Here, the person will be asked to log in so that their data can be compared
+        to the registered users in the text file. 
+        """
+        # (Placeholder för inloggningskod)
+        loginname = "Marcus Hedquist"
+        loginmail = "marcus@hedquist.com"
+        try:
+            with open("SolHotell/people.txt", "r") as people:
+                for i, line in enumerate(people.readlines()):
+                    if line.endswith("\n"):
+                        line = line.replace("\n", "")
+                    name, mail, street, indate, outdate, id = line.split('|')
+
+                    if name == loginmail and mail == loginmail:
+                        with open("SolHotell/bookrooms.txt", "r") as booked:
+                            for i, room in enumerate(booked.readlines()):
+                                if room.endswith("\n"):
+                                    line = line.replace("\n", "")
+                            if room[18:21] == id:
+                                pass
+
+
+
+                    
+
+
+        except:
+            pass
+    
     
     #function for viewing information about the standard room
     def standard_info(self):
