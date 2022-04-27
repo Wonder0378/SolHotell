@@ -232,10 +232,11 @@ class Room:
         self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
         self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.pic = PhotoImage(file="SolHotell/pictures/familjerum.png", width=50, height=50)
+
         self.bookbtn = tk.Button(self.booktext, text="BOKA", command=lambda : self.book(randint(1, 1000)), bg=self.carrot, fg=self.white, font="Arial, 10", padx=20)
         #self.bookbtn = tk.Button(self.booktext, text="Book")
-    
         self.bookbtn.grid(column=5, row=1,)
+
         self.front.grid(column=0, row=0)
         self.moreinfo.grid(column=0, row=1)
         #self.bookbtn.grid(column=8, row=1, columnspan=2, rowspan=3, sticky="e")
@@ -244,3 +245,41 @@ class Room:
         Här kommer rummens utseende
         visas, frame = roominformation_frame
         """
+
+    def unbookappear(self, frame, type, fromtime, totime):
+        self.booktext = tk.Frame(frame)
+        self.booktext.pack(pady=5)
+        if type == 1:
+            type = "Standard"
+        elif type == 2:
+            type = "Deluxe"
+        else:
+            type = "Family"
+
+        if self.wifi == 1:
+            iswifi = "Free Wifi"
+        else:
+            iswifi = "No Wifi"
+
+        if self.fridge == 1:
+            isfridge = "Fridge"
+        else:
+            isfridge = "No Fridge"
+
+        if self.bld == 0:
+            bld = "No breakfast"
+        elif self.bld == 1:
+            bld = "Breakfast"
+        elif self.bld == 2:
+            bld = "Breakfast and lunch"
+        else:
+            bld = "Breakfast, lunch and dinner"
+
+        self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
+        self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
+        self.evenmoreinfo = tk.Label(self.booktext, text=fromtime + " - " + totime)
+        self.pic = PhotoImage(file="SolHotell/pictures/familjerum.png", width=50, height=50)
+
+        self.front.grid(column=0, row=0)
+        self.moreinfo.grid(column=0, row=1)
+        self.evenmoreinfo.grid(column=0, row=2)

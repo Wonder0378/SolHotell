@@ -157,6 +157,10 @@ class Main():
 
     #funtion to view all different rooms
     def view(self):
+        try:
+            self.closeinfoframe()
+        except:
+            pass
         #creating the frame that will contain infromation about the room
         self.information_frame = tk.Frame(self.root, background=self.white)
 
@@ -191,35 +195,62 @@ class Main():
 
     #function for checkout
     def checkout(self):
+        try:
+            self.closeinfoframe()
+        except:
+            pass
+        #creating the frame that will contain infromation about the room
+        self.information_frame = tk.Frame(self.root, background=self.white)
+
+        #creating the label that will show information about the deluxeroom
+        self.roominformation_frame = tk.Frame(self.information_frame, background="#E7E0DB")
+
+        #creating a button that will be closing the information frame
+        self.closeinfoframe_button = tk.Button(self.information_frame, text="x", command=self.closeinfoframe, fg="red", font=("Arial", 12))
+        self.closeinfoframe_button.pack_forget()
+
+        #creating the information frame and packing everythin
+        self.information_frame.place(relx=0.4, rely=0.5)
+        self.roominformation_frame.grid(row=1, column=0, columnspan=5, sticky="w")
+        self.closeinfoframe_button.grid(row=0, column=5, columnspan=5)
+
+        self.unbook()
+
+    def unbook(self):
         """
         Here, the person will be asked to log in so that their data can be compared
         to the registered users in the text file. 
         """
+        self.__bookedrooms = []
         # (Placeholder för inloggningskod)
         loginname = "Marcus Hedquist"
         loginmail = "marcus@hedquist.com"
-        try:
-            with open("SolHotell/people.txt", "r") as people:
-                for i, line in enumerate(people.readlines()):
-                    if line.endswith("\n"):
-                        line = line.replace("\n", "")
-                    name, mail, street, indate, outdate, id = line.split('|')
 
-                    if name == loginmail and mail == loginmail:
-                        with open("SolHotell/bookrooms.txt", "r") as booked:
-                            for i, room in enumerate(booked.readlines()):
-                                if room.endswith("\n"):
-                                    line = line.replace("\n", "")
+        with open("SolHotell/people.txt", "r") as people:
+            for i, line in enumerate(people.readlines()):
+                if line.endswith("\n"):
+                    line = line.replace("\n", "")
+                name, mail, street, indate, outdate, id = line.split('|')
+
+                if str(name) == str(loginname) and str(mail) == str(loginmail):
+                    with open("SolHotell/bookroom.txt", "r") as booked:
+                        for i, room in enumerate(booked.readlines()):
+                            if room.endswith("\n"):
+                                room = room.replace("\n", "")
+                            print(room[18:21])
                             if room[18:21] == id:
-                                pass
+                                type = int(room[1:2])
+                                rooms = int(room[3:4])
+                                beds = int(room[5:6])
+                                wifi = int(room[7:8])
+                                bld = int(room[9:10])
+                                fridge = int(room[11:12])
+                                roomid = int(room[13:17])
 
+                                self.__bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
-
-                    
-
-
-        except:
-            pass
+                        for i in self.__bookedrooms:
+                            i.unbookappear(self.roominformation_frame, type, indate, outdate)
     
     
     #function for viewing information about the standard room
