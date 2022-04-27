@@ -251,7 +251,7 @@ class Main():
                                 self.__bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
                         for i in self.__bookedrooms:
-                            i.unbookappear(self.roominformation_frame, type, indate, outdate)
+                            i.unbookappear(self.roominformation_frame, type, indate, outdate, id)
     
     
     #function for viewing information about the standard room

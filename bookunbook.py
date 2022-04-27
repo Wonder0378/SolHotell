@@ -57,12 +57,12 @@ class Room:
         self.str_f = "f{}".format(self.fridge)
         self.str_room = "R{}".format(self.roomid)
 
-    def register(self):
-        room_open = open('SolHotell/rooms.txt', 'a', encoding='utf-8')
-
         self.string = self.str_t+self.str_r+self.str_b+self.str_w+self.str_bld+self.str_f+self.str_room
 
+    def register(self):
+        room_open = open('SolHotell/rooms.txt', 'a', encoding='utf-8')
         room_open.write("{}\n".format(self.string))
+        room_open.close()
 
     def book(self, id, string):
         class Main:
@@ -179,9 +179,9 @@ class Room:
                     toFile.close()
 
                     # Removes the room from the list of avaiable rooms to book
-                    with open("rooms.txt", "r") as f:
+                    with open("SolHotell/rooms.txt", "r") as f:
                         lines = f.readlines()
-                    with open("rooms.txt", "w") as f:
+                    with open("SolHotell/rooms.txt", "w") as f:
                         for line in lines:
                             if line.strip("\n") != self.string:
                                 f.write(line)
@@ -216,6 +216,15 @@ class Room:
         Main(root, string, self.booktext)
         root.mainloop()
 
+    def checkout(self, id):
+        with open("SolHotell/bookroom.txt", "r") as f:
+            lines = f.readlines()
+        with open("SolHotell/bookroom.txt", "w") as f:
+            for line in lines:
+                if line.strip("\n") != self.string+id:
+                    f.write(line)
+
+        self.register()
 
     def appear(self, frame, order, type):
         self.booktext = tk.Frame(frame)
@@ -256,7 +265,7 @@ class Room:
         visas, frame = roominformation_frame
         """
 
-    def unbookappear(self, frame, type, fromtime, totime):
+    def unbookappear(self, frame, type, fromtime, totime, id):
         self.booktext = tk.Frame(frame)
         self.booktext.pack(pady=5)
         if type == 1:
@@ -288,8 +297,9 @@ class Room:
         self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
         self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.evenmoreinfo = tk.Label(self.booktext, text=fromtime + " - " + totime)
-        
+        self.unbook = tk.Button(self.booktext, text="Avboka", command=self.checkout(id))
 
         self.front.grid(column=0, row=0)
         self.moreinfo.grid(column=0, row=1)
         self.evenmoreinfo.grid(column=0, row=2)
+        self.unbook.grid(column=5, row=1)
