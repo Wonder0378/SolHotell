@@ -19,3 +19,5 @@
 
     Lösning: Vi gjorde programmet till helskärm, och skapade en egen exit knapp
 
+5. Om man i menyn där man kan välja rumstyp klickar på samma typ två gånger
+så läggs det till kopior av samma rum över, vilket inte ska ske. 
