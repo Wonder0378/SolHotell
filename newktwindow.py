@@ -42,6 +42,7 @@ class Main():
         self.pic = PhotoImage(file="SolHotell/pictures/finstrand.png")
 
         #setting color variebles that will be used later
+        
         self.carrot = "#ff8e00" #lightest orange
         self.orange = "#fd7702" #medium orange
         self.mandarin = "#ff5003" #darkest orange
