@@ -151,13 +151,18 @@ forward(210)
 
 
 #write välkommen åter
-turtle.color('#fd7702')
+turtle.color('#ff8e00')
 style = ('Brush Script MT', 30, 'italic')
 turtle.write('Välkommen åter!', font=style)
 
 
 #move
 left(90)
-forward(300)
+forward(270)
+left(90)
+forward(260)
 
+#write sammys solhotell 
+style = ('Arial', 35)
+turtle.write('☀ SAMMYS SOLHOTELL ☀', font=style)
 done()
