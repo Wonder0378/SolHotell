@@ -257,6 +257,10 @@ class Main():
     def standard_info(self):
         #Placing the rooms
         for index, i in enumerate(self.__standardrooms):
+            try:
+                i.booktext.pack_forget()
+            except:
+                pass
             i.appear(self.roominformation_frame, (index+1), "standard")
 
         try:
@@ -273,6 +277,10 @@ class Main():
     def family_info(self):
         #creating and adding a button that will be used for booking a room
         for index, i in enumerate(self.__familyrooms):
+            try:
+                i.booktext.pack_forget()
+            except:
+                pass
             i.appear(self.roominformation_frame, (index+1), "family")
 
         try:
@@ -287,6 +295,10 @@ class Main():
     def deluxe_info(self):
         #opening the file that will contain the information we want to show
         for index, i in enumerate(self.__deluxerooms):
+            try:
+                i.booktext.pack_forget()
+            except:
+                pass
             i.appear(self.roominformation_frame, (index+1), "deluxe")
 
         try:
