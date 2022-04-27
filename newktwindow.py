@@ -21,7 +21,7 @@ try:
 except: 
     pass
 """
-Name: Samuel Hellqvist
+Name: Samuel Hellqvist & Marcus Hedquist 
 Date: 23-03-2022
 Info:
 This is a weather app that will display what weather it is somewhere in the world
@@ -224,7 +224,7 @@ class Main():
         self.__bookedrooms = []
         # (Placeholder för inloggningskod)
         loginname = "Marcus Hedquist"
-        loginmail = "marcus@hedquist.com"
+        loginmail = "m.hedquist03@gmail.com"
 
         with open("SolHotell/people.txt", "r") as people:
             for i, line in enumerate(people.readlines()):

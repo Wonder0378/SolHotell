@@ -64,21 +64,11 @@ class Room:
 
         room_open.write("{}\n".format(self.string))
 
-    def book(self, id):
-        file_open = open('SolHotell/bookroom.txt', 'a')
-
-        self.str_id = "i{}".format(id)
-        self.string = self.str_t+self.str_r+self.str_b+self.str_w+self.str_bld+self.str_f+self.str_room+self.str_id
-
-        file_open.write("{}\n".format(self.string))
-
-        """
-        msgbox.showinfo("Your Room is booked", "Your booking number is: " + str(id))
-        """
-        self.booktext.pack_forget()
-
+    def book(self, id, string):
         class Main:
-            def __init__(self, root):
+            def __init__(self, root, string, booktext):
+                self.string = string
+                self.booktext = booktext
                 root.wm_title("Bokning")
 
                 #Set the geometry of frame
@@ -182,9 +172,30 @@ class Room:
 
                 #if everything is added properly, the booking is saved to a file
                 else: 
-                    toFile = open("SolHotell/bookings.txt", "a", encoding="utf-8")
+
+                    # Person details saved
+                    toFile = open("SolHotell/people.txt", "a", encoding="utf-8")
                     toFile.write(self.name_entry.get() + "|" + self.email_entry.get() + "|" + self.adress_entry.get() + "|" + "incheckning: " + self.day_entry.get() + " " + self.month_var.get() + "|" + "utcheckning: " + self.day2_entry.get() + " " + self.month2_var.get() +  "|" + str(id) + "\n")
                     toFile.close()
+
+                    # Removes the room from the list of avaiable rooms to book
+                    with open("rooms.txt", "r") as f:
+                        lines = f.readlines()
+                    with open("rooms.txt", "w") as f:
+                        for line in lines:
+                            if line.strip("\n") != self.string:
+                                f.write(line)
+
+                    # Adds room to list of currently booked
+                    file_open = open('SolHotell/bookroom.txt', 'a')
+
+                    self.str_id = "i{}".format(id)
+                    self.string = self.string+self.str_id
+
+                    file_open.write("{}\n".format(self.string))
+                    file_open.close()
+
+                    self.booktext.pack_forget()
 
                     #all the entrys are emptied so that they are ready for the next user
                     self.name_entry.delete(0, END)
@@ -202,7 +213,7 @@ class Room:
                     root.destroy()
 
         root = Tk()
-        Main(root)
+        Main(root, string, self.booktext)
         root.mainloop()
 
 
@@ -231,9 +242,8 @@ class Room:
 
         self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
         self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
-        self.pic = PhotoImage(file="SolHotell/pictures/familjerum.png", width=50, height=50)
 
-        self.bookbtn = tk.Button(self.booktext, text="BOKA", command=lambda : self.book(randint(1, 1000)), bg=self.carrot, fg=self.white, font="Arial, 10", padx=20)
+        self.bookbtn = tk.Button(self.booktext, text="BOKA", command=lambda : self.book(randint(1, 1000), self.string), bg=self.carrot, fg=self.white, font="Arial, 10", padx=20)
         #self.bookbtn = tk.Button(self.booktext, text="Book")
         self.bookbtn.grid(column=5, row=1,)
 
@@ -278,7 +288,7 @@ class Room:
         self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
         self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.evenmoreinfo = tk.Label(self.booktext, text=fromtime + " - " + totime)
-        self.pic = PhotoImage(file="SolHotell/pictures/familjerum.png", width=50, height=50)
+        
 
         self.front.grid(column=0, row=0)
         self.moreinfo.grid(column=0, row=1)
