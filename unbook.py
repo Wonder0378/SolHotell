@@ -34,7 +34,7 @@ class Main:
     def unbook(self):
         print(self.name_entry.get())
         print(self.email_entry.get())
-        msgbox.showinfo("Klart!", "Din bokning är nu avbruten!")
+        #msgbox.showinfo("Klart!", "Din bokning är nu avbruten!")
         self.name_entry.delete(0, END)
         self.email_entry.delete(0, END)
         root.destroy()
