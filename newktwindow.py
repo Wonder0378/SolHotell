@@ -194,6 +194,21 @@ class Main():
 
     #function for checkout
     def getcheckoutinfo(self):
+        try:
+            self.closeinfoframe()
+        except:
+            pass
+        #creating the frame that will contain infromation about the room
+        self.checkout_frame = tk.Frame(self.root, background=self.white)
+
+        #creating a button that will be closing the information frame
+        self.closecheckoutframe_button = tk.Button(self.checkout_frame, text="x", fg="red", font=("Arial", 12))
+        self.closecheckoutframe_button.pack_forget()
+
+        #creating the information frame and packing everythin
+        self.checkout_frame.place(relx=0.4, rely=0.5)
+        self.closecheckoutframe_button.grid(row=0, column=3)
+        """
         class UnBook:
             def __init__(self, root):
                 root.wm_title("Avbryta bokning")
@@ -205,37 +220,39 @@ class Main():
                 root.resizable(False, False)
 
                 #building two frames that the window will have
-                topFrame = Frame(root)
-                topFrame.pack()
+                self.topFrame = Frame(root)
+                self.topFrame.pack()
                 
                 #creating labels and entrys for the user information
-                name_lable = Label(topFrame, text="Namn: ")
+                name_lable = Label(self.topFrame, text="Namn: ")
                 name_lable.grid(row = 0, column= 0, sticky = W)
 
-                email_lable = Label(topFrame, text="E-mail: ")
+                email_lable = Label(self.topFrame, text="E-mail: ")
                 email_lable.grid(row = 1, column = 0, sticky = W)
 
-                unbook_btn = Button(topFrame, text="Gå vidare", command=self.unbook)
+                unbook_btn = Button(self.topFrame, text="Gå vidare", command=self.unbook)
                 unbook_btn.grid(row=2, column=1, sticky = W, pady="10")
 
-                self.name_entry = Entry(topFrame)
+                self.name_entry = Entry(self.topFrame)
                 self.name_entry.grid(row = 0, column = 1)
 
-                self.email_entry = Entry(topFrame)
+                self.email_entry = Entry(self.topFrame)
                 self.email_entry.grid(row = 1, column = 1)
 
             def unbook(self):
                 self.name = self.name_entry.get()
                 self.mail = self.email_entry.get()
-                msgbox.showinfo("Klart!", "Din bokning är nu avbruten!")
+                #msgbox.showinfo("Klart!", "Din bokning är nu avbruten!")
                 self.name_entry.delete(0, END)
                 self.email_entry.delete(0, END)
-                root.destroy()
+                #root.destroy()
+                self.topFrame.pack_forget()
 
 
         root = Tk()
         UnBook(root)
         root.mainloop()
+    """
     def checkout(self):
         try:
             self.closeinfoframe()
