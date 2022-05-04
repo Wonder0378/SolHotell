@@ -21,3 +21,12 @@
 
 5. Om man i menyn där man kan välja rumstyp klickar på samma typ två gånger
 så läggs det till kopior av samma rum över, vilket inte ska ske. 
+
+    Lösning: Problemet uppstod pågrund av att man inte tog bort rumsalternativen från
+    den menyn man varit i om man klickar på samma meny. Vi fixade problemet genom
+    att göra det (ta bort dessa menyalternativ)
+
+6. Om användaren registrerar sig igen med samma namn och mail så kommer det bli duplikaner
+
+    Lösning: Vi valde att inte åtgärda problemet eftersom resultatet blir detsamma, d.v.s. att
+    alla rummen visas för personen. 

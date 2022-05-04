@@ -65,6 +65,7 @@ class Room:
         room_open.close()
 
     def book(self, id, string):
+        self.id = id
         class Main:
             def __init__(self, root, string, booktext):
                 self.string = string
@@ -221,10 +222,12 @@ class Room:
             lines = f.readlines()
         with open("SolHotell/bookroom.txt", "w") as f:
             for line in lines:
-                if line.strip("\n") != self.string+id:
+                if line.strip("\n") != "{}{}".format(self.string, id):
                     f.write(line)
 
         self.register()
+
+        self.booktext.pack_forget()
 
     def appear(self, frame, order, type):
         self.booktext = tk.Frame(frame)
@@ -268,6 +271,7 @@ class Room:
     def unbookappear(self, frame, type, fromtime, totime, id):
         self.booktext = tk.Frame(frame)
         self.booktext.pack(pady=5)
+        self.id = id
         if type == 1:
             type = "Standard"
         elif type == 2:
@@ -297,7 +301,7 @@ class Room:
         self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
         self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.evenmoreinfo = tk.Label(self.booktext, text=fromtime + " - " + totime)
-        self.unbook = tk.Button(self.booktext, text="Avboka", command=self.checkout(id))
+        self.unbook = tk.Button(self.booktext, text="Avboka", command=self.checkout(self.id))
 
         self.front.grid(column=0, row=0)
         self.moreinfo.grid(column=0, row=1)

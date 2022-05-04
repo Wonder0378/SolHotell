@@ -195,11 +195,57 @@ class Main():
         self.closeinfoframe_button.grid(row=0, column=3)
 
     #function for checkout
+    def getcheckoutinfo(self):
+        class UnBook:
+            def __init__(self, root):
+                root.wm_title("Avbryta bokning")
+
+                #Set the geometry of frame
+                root.geometry("200x150")
+
+                #Set the resizable property False
+                root.resizable(False, False)
+
+                #building two frames that the window will have
+                topFrame = Frame(root)
+                topFrame.pack()
+                
+                #creating labels and entrys for the user information
+                name_lable = Label(topFrame, text="Namn: ")
+                name_lable.grid(row = 0, column= 0, sticky = W)
+
+                email_lable = Label(topFrame, text="E-mail: ")
+                email_lable.grid(row = 1, column = 0, sticky = W)
+
+                unbook_btn = Button(topFrame, text="Gå vidare", command=self.unbook)
+                unbook_btn.grid(row=2, column=1, sticky = W, pady="10")
+
+                self.name_entry = Entry(topFrame)
+                self.name_entry.grid(row = 0, column = 1)
+
+                self.email_entry = Entry(topFrame)
+                self.email_entry.grid(row = 1, column = 1)
+
+            def unbook(self):
+                self.name = self.name_entry.get()
+                self.mail = self.email_entry.get()
+                msgbox.showinfo("Klart!", "Din bokning är nu avbruten!")
+                self.name_entry.delete(0, END)
+                self.email_entry.delete(0, END)
+                root.destroy()
+
+
+        root = Tk()
+        UnBook(root)
+        root.mainloop()
     def checkout(self):
         try:
             self.closeinfoframe()
         except:
             pass
+
+        loginname, loginmail = self.getcheckoutinfo()
+
         #creating the frame that will contain infromation about the room
         self.information_frame = tk.Frame(self.root, background=self.white)
 
@@ -215,17 +261,15 @@ class Main():
         self.roominformation_frame.grid(row=1, column=0, columnspan=5, sticky="w")
         self.closeinfoframe_button.grid(row=0, column=5, columnspan=5)
 
-        self.unbook()
+        self.unbook(loginname, loginmail)
 
-    def unbook(self):
+    def unbook(self, loginname, loginmail):
         """
         Here, the person will be asked to log in so that their data can be compared
         to the registered users in the text file. 
         """
         self.__bookedrooms = []
         # (Placeholder för inloggningskod)
-        loginname = "Marcus Hedquist"
-        loginmail = "m.hedquist03@gmail.com"
 
         with open("SolHotell/people.txt", "r") as people:
             for i, line in enumerate(people.readlines()):
