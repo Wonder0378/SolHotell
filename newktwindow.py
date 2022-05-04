@@ -2,10 +2,8 @@
 Created by: Samuel Hellqvist and Marcus Hedquist
 Date: 09-03-2022
 Info:
-
 new file for the hotel
 everything is given name like this:
-
 self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
