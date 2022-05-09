@@ -8,6 +8,7 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
 #imports what the program needs
+from ast import Continue
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
@@ -273,6 +274,8 @@ class Main():
             for i, line in enumerate(people.readlines()):
                 if line.endswith("\n"):
                     line = line.replace("\n", "")
+                if len(line) < 10:
+                    continue
                 name, mail, street, indate, outdate, id = line.split('|')
 
                 if str(name) == str(loginname) and str(mail) == str(loginmail):
@@ -281,7 +284,8 @@ class Main():
                             if room.endswith("\n"):
                                 room = room.replace("\n", "")
                             print(room[18:21])
-                            if room[18:21] == id:
+                            print(id)
+                            if str(room[18:21]) == str(id):
                                 type = int(room[1:2])
                                 rooms = int(room[3:4])
                                 beds = int(room[5:6])
@@ -289,11 +293,16 @@ class Main():
                                 bld = int(room[9:10])
                                 fridge = int(room[11:12])
                                 roomid = int(room[13:17])
-
-                                self.__bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                                print("Appended")
+                                for i in self.__bookedrooms:
+                                    if roomid == i.roomid:
+                                        pass
+                                else:
+                                    self.__bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
                         for i in self.__bookedrooms:
                             i.unbookappear(self.roominformation_frame, type, indate, outdate, id)
+                            print("wot")
     
     
     #function for viewing information about the standard room

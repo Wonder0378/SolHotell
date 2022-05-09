@@ -272,9 +272,9 @@ class Room:
         self.booktext = tk.Frame(frame)
         self.booktext.pack(pady=5)
         self.id = id
-        if type == 1:
+        if int(type) == 1:
             type = "Standard"
-        elif type == 2:
+        elif int(type) == 2:
             type = "Deluxe"
         else:
             type = "Family"
