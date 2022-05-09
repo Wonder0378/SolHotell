@@ -2,10 +2,8 @@
 Created by: Samuel Hellqvist and Marcus Hedquist
 Date: 09-03-2022
 Info:
-
 new file for the hotel
 everything is given name like this:
-
 self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
@@ -161,6 +159,7 @@ class Main():
     def view(self):
         try:
             self.closeinfoframe()
+            self.closecheckoutframe()
         except:
             pass
         #creating the frame that will contain infromation about the room
@@ -197,11 +196,50 @@ class Main():
 
     #function for checkout
     def getcheckoutinfo(self):
-        return "Marcus", "m.hedquist03@gmail.com"
+        try:
+            self.closeinfoframe()
+            self.closecheckoutframe()
+        except:
+            pass
+        #creating the frame that will contain infromation about the room
+        self.checkout_frame = tk.Frame(self.root, background=self.white)
 
+        #creating a button that will be closing the information frame
+        self.closecheckoutframe_button = tk.Button(self.checkout_frame, command=self.closecheckoutframe, text="x", fg="red", font=("Arial", 12))
+        self.closecheckoutframe_button.pack_forget()
+
+        #a label for the name
+        self.checkout_name_label = tk.Label(self.checkout_frame, text="Namn: ", font=("Arial", 13))
+        self.checkout_name_label.pack_forget()
+
+        #a label for the emial
+        self.checkout_emial_label = tk.Label(self.checkout_frame, text="e-mial: ", font=("Arial", 13))
+        self.checkout_emial_label.pack_forget()
+
+        #an entry for the name
+        self.checkout_name_entry = tk.Entry(self.checkout_frame)
+        self.checkout_name_entry.pack_forget()
+
+        #an entry for the email
+        self.checkout_emial_entry = tk.Entry(self.checkout_frame)
+        self.checkout_emial_entry.pack_forget()
+
+        #a button for continueing the checkout
+        self.checkout_go_button = tk.Button(self.checkout_frame, command=self.checkoutgo, text="Fortsätt", bg=self.sky, fg=self.white, font=("Arial", 12))
+
+        #creating the information frame and packing everythin
+        self.checkout_frame.place(relx=0.4, rely=0.5)
+        self.closecheckoutframe_button.grid(row=0, column=3)
+        self.checkout_name_label.grid(row = 1, column=0)
+        self.checkout_name_entry.grid(row=1, column=1)
+        self.checkout_emial_label.grid(row=2, column=0)
+        self.checkout_emial_entry.grid(row=2, column=1)
+        self.checkout_go_button.grid(row=3, column =1, sticky=E, pady=20)
+    
     def checkout(self):
         try:
             self.closeinfoframe()
+            self.closecheckoutframe()
         except:
             pass
 
@@ -219,7 +257,7 @@ class Main():
 
         #creating the information frame and packing everythin
         self.information_frame.place(relx=0.4, rely=0.5)
-        self.roominformation_frame.grid(row=1, column=0, columnspan=5, sticky="w")
+        self.roominformation_frame.grid(row=1, column=0, columnspan=5, sticky= W)
         self.closeinfoframe_button.grid(row=0, column=5, columnspan=5)
 
         self.unbook(loginname, loginmail)
@@ -327,6 +365,12 @@ class Main():
     def closeinfoframe(self):
         #the information frame will be destroyed, it will be created again when the show information button will be clicked
         self.information_frame.destroy()
+
+    def closecheckoutframe(self):
+        self.checkout_frame.destroy()
+
+    def checkoutgo(self):
+        pass
 
     #function that books the room
     def bookroom(self):
