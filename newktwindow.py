@@ -361,7 +361,7 @@ class Main():
         self.checkout_frame.destroy()
 
     def checkoutgo(self):
-        pass
+        pass        
 
     #function that books the room
     def bookroom(self):
