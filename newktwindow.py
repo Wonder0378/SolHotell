@@ -250,7 +250,6 @@ class Main():
 
         #creating a button that will be closing the information frame
         self.closeinfoframe_button = tk.Button(self.information_frame, text="x", command=self.closeinfoframe, fg="red", font=("Arial", 12))
-        self.closeinfoframe_button.pack_forget()
 
         #creating the information frame and packing everythin
         self.information_frame.place(relx=0.4, rely=0.5)
