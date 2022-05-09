@@ -30,3 +30,7 @@ så läggs det till kopior av samma rum över, vilket inte ska ske.
 
     Lösning: Vi valde att inte åtgärda problemet eftersom resultatet blir detsamma, d.v.s. att
     alla rummen visas för personen. 
+
+7. Väder-appen behövde pip. Efter att vi hade lagt till väderappen i main-programmet krashade programmet ifall man ville starta det och inte hade pip
+
+    Lösning: Vi lade till en try-accept sats. Om det inte går att importera väder-appen så hoppar programmet över det. Vilket stoppade programmet för att få error ifall pip saknades. 

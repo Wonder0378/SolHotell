@@ -8,25 +8,21 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
 #imports what the program needs
-from ast import Continue
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
 from random import randint
 import tkinter.messagebox as msgbox
 
+#trying to import the water-app
+#if the user does not have pip the weather app will not work
+#this little piece code prevents the program from crashing if pip is not avilible
 try:
     from getweather import GetWeather
 except: 
     pass
-"""
-Name: Samuel Hellqvist & Marcus Hedquist 
-Date: 23-03-2022
-Info:
-This is a weather app that will display what weather it is somewhere in the world
-"""
 
-#everything will be udner this main class
+#the entirety of the program will be under this main class
 class Main():
     def __init__(self):
         self.__roomids = []
@@ -87,6 +83,7 @@ class Main():
             self.weather_label.place(relx=0.145, rely=0.3)
         except:
             pass
+
         self.exit_button.place(relx=0.9, rely=0.9)
         self.roominfo_button.place(relx=0.2, rely=0.5)
         self.checkout_button.place(relx=0.2, rely=0.6)
