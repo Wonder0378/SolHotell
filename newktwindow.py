@@ -10,6 +10,7 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
 #imports what the program needs
+from ast import Continue
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
@@ -196,48 +197,8 @@ class Main():
 
     #function for checkout
     def getcheckoutinfo(self):
-        class UnBook:
-            def __init__(self, root):
-                root.wm_title("Avbryta bokning")
+        return "Marcus", "m.hedquist03@gmail.com"
 
-                #Set the geometry of frame
-                root.geometry("200x150")
-
-                #Set the resizable property False
-                root.resizable(False, False)
-
-                #building two frames that the window will have
-                topFrame = Frame(root)
-                topFrame.pack()
-                
-                #creating labels and entrys for the user information
-                name_lable = Label(topFrame, text="Namn: ")
-                name_lable.grid(row = 0, column= 0, sticky = W)
-
-                email_lable = Label(topFrame, text="E-mail: ")
-                email_lable.grid(row = 1, column = 0, sticky = W)
-
-                unbook_btn = Button(topFrame, text="Gå vidare", command=self.unbook)
-                unbook_btn.grid(row=2, column=1, sticky = W, pady="10")
-
-                self.name_entry = Entry(topFrame)
-                self.name_entry.grid(row = 0, column = 1)
-
-                self.email_entry = Entry(topFrame)
-                self.email_entry.grid(row = 1, column = 1)
-
-            def unbook(self):
-                self.name = self.name_entry.get()
-                self.mail = self.email_entry.get()
-                msgbox.showinfo("Klart!", "Din bokning är nu avbruten!")
-                self.name_entry.delete(0, END)
-                self.email_entry.delete(0, END)
-                root.destroy()
-
-
-        root = Tk()
-        UnBook(root)
-        root.mainloop()
     def checkout(self):
         try:
             self.closeinfoframe()
@@ -275,6 +236,8 @@ class Main():
             for i, line in enumerate(people.readlines()):
                 if line.endswith("\n"):
                     line = line.replace("\n", "")
+                if len(line) < 10:
+                    continue
                 name, mail, street, indate, outdate, id = line.split('|')
 
                 if str(name) == str(loginname) and str(mail) == str(loginmail):
@@ -283,7 +246,8 @@ class Main():
                             if room.endswith("\n"):
                                 room = room.replace("\n", "")
                             print(room[18:21])
-                            if room[18:21] == id:
+                            print(id)
+                            if str(room[18:21]) == str(id):
                                 type = int(room[1:2])
                                 rooms = int(room[3:4])
                                 beds = int(room[5:6])
@@ -291,11 +255,16 @@ class Main():
                                 bld = int(room[9:10])
                                 fridge = int(room[11:12])
                                 roomid = int(room[13:17])
-
-                                self.__bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                                print("Appended")
+                                for i in self.__bookedrooms:
+                                    if roomid == i.roomid:
+                                        pass
+                                else:
+                                    self.__bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
                         for i in self.__bookedrooms:
                             i.unbookappear(self.roominformation_frame, type, indate, outdate, id)
+                            print("wot")
     
     
     #function for viewing information about the standard room
