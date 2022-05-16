@@ -354,6 +354,8 @@ class Main():
             i.appear(self.roominformation_frame, (index+1), "deluxe")
 
         try:
+            #while you are looking at the deluxe room the other types of rooms will be hidden
+            #this is achieved with at pack_forget() function that removes the tkinter elements
             for i in self.standardrooms:
                 i.booktext.pack_forget()
             for i in self.familyrooms:
