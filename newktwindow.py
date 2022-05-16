@@ -8,23 +8,19 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 """
 
 #imports what the program needs
-from ast import Continue
 import tkinter as tk
 from tkinter import *
 from bookunbook import Room
 from random import randint
 import tkinter.messagebox as msgbox
 
+#trying to import the water-app
+#if the user does not have pip the weather app will not work
+#this little piece code prevents the program from crashing if pip is not avilible
 try:
     from getweather import GetWeather
 except: 
     pass
-"""
-Name: Samuel Hellqvist & Marcus Hedquist 
-Date: 23-03-2022
-Info:
-This is a weather app that will display what weather it is somewhere in the world
-"""
 
 #everything will be under this main class
 class Main():
@@ -87,6 +83,7 @@ class Main():
             self.weather_label.place(relx=0.145, rely=0.3)
         except:
             pass
+
         self.exit_button.place(relx=0.9, rely=0.9)
         self.roominfo_button.place(relx=0.2, rely=0.5)
         self.checkout_button.place(relx=0.2, rely=0.6)
@@ -125,6 +122,7 @@ class Main():
                     fridge = int(line[11:12])
                     roomid = int(line[13:17])
 
+                    #Checks wich type of room it is and displaying correct information
                     if type == 1:
                         self.standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
                     elif type == 2:
@@ -258,7 +256,6 @@ class Main():
 
         #creating a button that will be closing the information frame
         self.closeinfoframe_button = tk.Button(self.information_frame, text="x", command=self.closeinfoframe, fg="red", font=("Arial", 12))
-        self.closeinfoframe_button.pack_forget()
 
         #creating the information frame and packing everythin
         self.information_frame.place(relx=0.4, rely=0.5)
@@ -373,7 +370,7 @@ class Main():
         self.checkout_frame.destroy()
 
     def checkoutgo(self):
-        pass
+        pass        
 
     #function that books the room
     def bookroom(self):
