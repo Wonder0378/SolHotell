@@ -122,6 +122,7 @@ class Main():
                     fridge = int(line[11:12])
                     roomid = int(line[13:17])
 
+                    #Checks wich type of room it is and displaying correct information
                     if type == 1:
                         self.__standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
                     elif type == 2:
