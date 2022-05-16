@@ -66,7 +66,7 @@ class Room:
 
     def book(self, id, string):
         self.id = id
-        class Main:
+        class ClassMain:
             def __init__(self, root, string, booktext):
                 self.string = string
                 self.booktext = booktext
@@ -214,15 +214,16 @@ class Room:
                     root.destroy()
 
         root = Tk()
-        Main(root, string, self.booktext)
+        code = ClassMain(root, string, self.booktext)
         root.mainloop()
 
     def checkout(self, id):
+        print(id)
         with open("SolHotell/bookroom.txt", "r") as f:
             lines = f.readlines()
         with open("SolHotell/bookroom.txt", "w") as f:
             for line in lines:
-                if line.strip("\n") != "{}{}".format(self.string, id):
+                if line.strip("\n") != "{}i{}".format(self.string, id):
                     f.write(line)
 
         self.register()
@@ -269,6 +270,7 @@ class Room:
         """
 
     def unbookappear(self, frame, type, fromtime, totime, id):
+        print("Hej")
         self.booktext = tk.Frame(frame)
         self.booktext.pack(pady=5)
         self.id = id
@@ -301,7 +303,8 @@ class Room:
         self.front = tk.Label(self.booktext, text=type.upper()+"room".upper(), bg=self.white, font="Arial, 11")
         self.moreinfo = tk.Label(self.booktext,bg=self.white, text="Rooms: {} | Beds: {} | {} | {} | {}".format(self.rooms, self.beds, iswifi, isfridge, bld))
         self.evenmoreinfo = tk.Label(self.booktext, text=fromtime + " - " + totime)
-        self.unbook = tk.Button(self.booktext, text="Avboka", command=self.checkout(self.id))
+        self.unbook = tk.Button(self.booktext, text="Avboka", command=lambda : self.checkout(self.id))
+        self.unbook.pack_forget()
 
         self.front.grid(column=0, row=0)
         self.moreinfo.grid(column=0, row=1)
