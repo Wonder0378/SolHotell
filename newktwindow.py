@@ -11,7 +11,6 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 import tkinter as tk
 from tkinter import *
 
-from numpy import true_divide
 from bookunbook import Room
 from random import randint
 import tkinter.messagebox as msgbox
