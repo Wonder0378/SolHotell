@@ -13,7 +13,7 @@ from tkinter import *
 from bookunbook import Room
 from random import randint
 
-#trying to import the water-app
+#trying to import the water-app 
 #if the user does not have pip the weather app will not work
 #this little piece code prevents the program from crashing if pip is not avilible
 try:
