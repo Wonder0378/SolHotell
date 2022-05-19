@@ -10,6 +10,8 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 #imports what the program needs
 import tkinter as tk
 from tkinter import *
+
+from numpy import true_divide
 from bookunbook import Room
 from random import randint
 import tkinter.messagebox as msgbox
@@ -111,30 +113,31 @@ class Main():
         self.standardrooms = []
         self.deluxerooms = []
         self.familyrooms = []
+        self.bookedrooms = []
 
-        try: # Checks if there are any already registered rooms in the hotel
-            with open("SolHotell/rooms.txt", "r", encoding="utf-8") as text:
-                for i, line in enumerate(text.readlines()):
-                    if line.endswith("\n"):
-                        line = line.replace("\n", "")
+        #try: # Checks if there are any already registered rooms in the hotel
+        with open("SolHotell/rooms.txt", "r", encoding="utf-8") as text:
+            for i, line in enumerate(text.readlines()):
+                if line.endswith("\n"):
+                    line = line.replace("\n", "")
 
-                    type = int(line[1:2])
-                    rooms = int(line[3:4])
-                    beds = int(line[5:6])
-                    wifi = int(line[7:8])
-                    bld = int(line[9:10])
-                    fridge = int(line[11:12])
-                    roomid = int(line[13:17])
+                type = int(line[1:2])
+                rooms = int(line[3:4])
+                beds = int(line[5:6])
+                wifi = int(line[7:8])
+                bld = int(line[9:10])
+                fridge = int(line[11:12])
+                roomid = int(line[13:17])
 
-                    #Checks wich type of room it is and displaying correct information
-                    if type == 1:
-                        self.standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
-                    elif type == 2:
-                        self.deluxerooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
-                    elif type == 3:
-                        self.familyrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                #Checks wich type of room it is and displaying correct information
+                if type == 1:
+                    self.standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                elif type == 2:
+                    self.deluxerooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                elif type == 3:
+                    self.familyrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
-        
+        """
         except: # If file hasn't been created, or is empty, an exception will be made
             for i in range(1, 5): # And 4 rooms of every kind will be created
                 self.standardrooms.append(Room(1, randint(1, 4), randint(2, 4), randint(0, 1), 1, randint(0, 1), self.roomid()))
@@ -147,7 +150,7 @@ class Main():
                 i.register()
             for i in self.familyrooms:
                 i.register()
-        
+        """
 
     #function that makes the program run
     def run(self):
@@ -207,7 +210,7 @@ class Main():
         self.checkout_frame = tk.Frame(self.root, background=self.white)
 
         #creating a button that will be closing the information frame
-        self.closecheckoutframe_button = tk.Button(self.checkout_frame, command=self.closecheckoutframe, text="x", fg="red", font=("Arial", 12))
+        self.closecheckoutframe_button = tk.Button(self.checkout_frame, command=lambda : self.closecheckoutframe, text="x", fg="red", font=("Arial", 12))
         self.closecheckoutframe_button.pack_forget()
 
         #a label for the name
@@ -220,11 +223,11 @@ class Main():
 
         #an entry for the name
         self.checkout_name_entry = tk.Entry(self.checkout_frame)
-        self.checkout_name_entry.pack_forget()
+        #self.checkout_name_entry.pack_forget()
 
         #an entry for the email
         self.checkout_emial_entry = tk.Entry(self.checkout_frame)
-        self.checkout_emial_entry.pack_forget()
+        #self.checkout_emial_entry.pack_forget()
 
         #a button for continueing the checkout
         self.checkout_go_button = tk.Button(self.checkout_frame, command=self.checkout, text="Fortsätt", bg=self.sky, fg=self.white, font=("Arial", 12))
@@ -241,13 +244,20 @@ class Main():
     
     def checkout(self):
         try:
+            self.name = self.checkout_name_entry.get()
+            self.mail = self.checkout_emial_entry.get()
+        except:
+            self.name = ""
+            self.mail = ""
+
+        try:
             self.closeinfoframe()
             self.closecheckoutframe()
         except:
             pass
 
-        loginname = self.checkout_name_entry.get()
-        loginmail = self.checkout_emial_entry.get()
+        loginname = self.name
+        loginmail = self.mail
         self.checkout_frame.destroy()
 
         #creating the frame that will contain infromation about the room
@@ -273,8 +283,6 @@ class Main():
         Here, the person will be asked to log in so that their data can be compared
         to the registered users in the text file. 
         """
-        self.bookedrooms = []
-        # (Placeholder för inloggningskod)
 
         with open("SolHotell/people.txt", "r") as people:
             for i, line in enumerate(people.readlines()):
@@ -304,6 +312,7 @@ class Main():
                                     if roomid == i.roomid:
                                         pass
                                 else:
+                                    self.remove()
                                     self.bookedrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
                         for i in self.bookedrooms:
@@ -314,58 +323,27 @@ class Main():
     #function for viewing information about the standard room
     def standard_info(self):
         #Placing the rooms
+        self.closeRooms()
+        self.remove()
         for index, i in enumerate(self.standardrooms):
-            try:
-                i.booktext.pack_forget()
-            except:
-                pass
             i.appear(self.roominformation_frame, (index+1), "standard")
-
-        try:
-            for i in self.deluxerooms:
-                i.booktext.pack_forget()
-            for i in self.familyrooms:
-                i.booktext.pack_forget()
-        except:
-            pass
 
     #function for viewing information about the family room
     def family_info(self):
         #creating and adding a button that will be used for booking a room
+        self.closeRooms()
+        self.remove()
         for index, i in enumerate(self.familyrooms):
-            try:
-                i.booktext.pack_forget()
-            except:
-                pass
             i.appear(self.roominformation_frame, (index+1), "family")
-
-        try:
-            for i in self.deluxerooms:
-                i.booktext.pack_forget()
-            for i in self.standardrooms:
-                i.booktext.pack_forget()
-        except:
-            pass
 
     #function for viewing information about the deluxe room
     def deluxe_info(self):
         #opening the file that will contain the information we want to show
-        for index, i in enumerate(self.deluxerooms):
-            try:
-                i.booktext.pack_forget()
-            except:
-                pass
-            i.appear(self.roominformation_frame, (index+1), "deluxe")
+        self.closeRooms()
+        self.remove()
 
-        try:
-            #while you are looking at the deluxe room the other types of rooms will be hidden
-            #this is achieved with at pack_forget() function that removes the tkinter elements
-            for i in self.standardrooms:
-                i.booktext.pack_forget()
-            for i in self.familyrooms:
-                i.booktext.pack_forget()
-        except:
-            pass
+        for index, i in enumerate(self.deluxerooms):
+            i.appear(self.roominformation_frame, (index+1), "deluxe")
 
     #funtion that will close the information frame
     def closeinfoframe(self):
@@ -375,8 +353,40 @@ class Main():
     def closecheckoutframe(self):
         self.checkout_frame.destroy()
 
-    def checkoutgo(self):
-        pass        
+    def closeRooms(self):
+        try:
+            for i in self.standardrooms:
+                i.booktext.destroy()
+        except:
+            print("???")
+
+        try:
+            for i in self.familyrooms:
+                i.booktext.destroy()
+        except:
+            print("???")
+
+        try:
+            for i in self.deluxerooms:
+                i.booktext.destroy()
+        except:
+            print("???")
+
+    def remove(self):
+        while True:
+            for x in self.standardrooms:
+                self.standardrooms.remove(x)
+            for x in self.deluxerooms:
+                self.deluxerooms.remove(x)
+            for x in self.familyrooms:
+                self.familyrooms.remove(x)
+            for x in self.bookedrooms:
+                self.bookedrooms.remove(x)
+
+            if self.standardrooms == [] and self.deluxerooms == [] and self.familyrooms == [] and self.bookedrooms == []:
+                break
+
+        self.getrooms()
 
     #function that books the room
     def bookroom(self):
