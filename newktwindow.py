@@ -77,8 +77,12 @@ class Main():
         #creating a button that will let the user check out
         self.checkout_button = tk.Button(self.root, text="CHECKA UT", width=20, command=self.getcheckoutinfo, bg=self.carrot, fg=self.white, font="Arial")
 
-        #packing all the tkinter elements and palcing them
+        #placing the header
         self.header_label.place(relx=0.5, rely=0.17, anchor=CENTER)
+
+        #this is done to not get an error if pip is not present
+        #the programm tries to show the weather label
+        #and if it can't be shownthe program simply skips it
         try: 
             self.weather_label.place(relx=0.145, rely=0.3)
         except:
