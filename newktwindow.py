@@ -10,10 +10,8 @@ self.what-this-is_what-type-of-tkinter-element-thtis-is
 #imports what the program needs
 import tkinter as tk
 from tkinter import *
-
 from bookunbook import Room
 from random import randint
-import tkinter.messagebox as msgbox
 
 #trying to import the water-app
 #if the user does not have pip the weather app will not work
