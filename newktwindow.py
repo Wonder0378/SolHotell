@@ -23,9 +23,15 @@ except:
 
 #everything will be under this main class
 class Main():
+    """
+    Class to create tkinter window
+    """
     def __init__(self):
-        self.__roomids = []
-        self.getrooms()
+        """
+        Method for placing tkinter elements
+        """
+        self.__roomids = [] #creating a list for the room id:s
+        self.getrooms() #calling a method that fetches information about the rooms
 
         self.title = "Solhotellet, Marcus och Samuel"
 
@@ -93,6 +99,10 @@ class Main():
 
 
     def roomid(self):
+        """
+        This function will crate a id for every room
+        @return: void
+        """
         while True:
             id = randint(1000, 9999)
 
@@ -105,8 +115,12 @@ class Main():
 
 
     def getrooms(self):
-        #Inserting rooms
+        """
+        This function will create all the rooms for the program
+        @return: void
+        """
 
+        #Inserting rooms
         self.standardrooms = []
         self.deluxerooms = []
         self.familyrooms = []
@@ -149,19 +163,33 @@ class Main():
                 i.register()
         
 
-    #function that makes the program run
     def run(self):
+        """
+        This method will make the program run using mainloop
+        @return: void
+        """
         self.root.mainloop()
 
-    #function that closes the tkinter window
     def escape(self):
+        """
+        This method will close the tkinter window
+        @return: void
+        """
         self.root.destroy()
 
-    #funtion to view all different rooms
     def view(self):
+        """
+        This is a method used to veiw all the rooms
+        They will be placed on the window
+        @return: void
+        """
         try:
             self.closeinfoframe()
             self.closecheckoutframe()
+            """
+            the information frame and checkout frame will be closed using these functions
+            this is used to prevent the errors that will accure if 2 frames is open at once
+            """
         except:
             pass
         #creating the frame that will contain infromation about the room
@@ -198,9 +226,17 @@ class Main():
 
     #function for checkout
     def getcheckoutinfo(self):
+        """
+        This method will create a frame that will be used to checkout
+        @retun: void
+        """
         try:
             self.closeinfoframe()
             self.closecheckoutframe()
+            """
+            the information frame and checkout frame will be closed using these functions
+            this is used to prevent the errors that will accure if 2 frames is open at once
+            """
         except:
             pass
         #creating the frame that will contain infromation about the room
@@ -240,6 +276,11 @@ class Main():
 
     
     def checkout(self):
+        """
+        this method will get the information that the information that the user 
+        gave and match it to a booking, the booking well then be undone
+        @return: void
+        """
         try:
             self.name = self.checkout_name_entry.get()
             self.mail = self.checkout_emial_entry.get()
@@ -279,6 +320,9 @@ class Main():
         """
         Here, the person will be asked to log in so that their data can be compared
         to the registered users in the text file. 
+        @param loginname: the name that will be used to find the right booking to remove
+        @param loginmail: the mail-adress that be used to find the right booking to remove
+        @retur: void
         """
 
         with open("SolHotell/people.txt", "r") as people:
@@ -314,37 +358,66 @@ class Main():
     
     
     
-    #function for viewing information about the standard room
     def standard_info(self):
-        #Placing the rooms
+        """
+        This method will fetch and show information about the standard rooms
+        @return: void
+        """
         self.closeRooms()
         self.remove()
+        """
+        caling methods to close the other rooms-informations
+        this will prevent errors since to things can't be shown at 
+        once
+        """
         for index, i in enumerate(self.standardrooms):
             i.appear(self.roominformation_frame, (index+1), "standard")
 
-    #function for viewing information about the family room
     def family_info(self):
+        """
+        This method will fetch and show information about the family rooms
+        @return: void
+        """
         #creating and adding a button that will be used for booking a room
         self.closeRooms()
         self.remove()
+        """
+        caling methods to close the other rooms-informations
+        this will prevent errors since to things can't be shown at 
+        once
+        """
         for index, i in enumerate(self.familyrooms):
             i.appear(self.roominformation_frame, (index+1), "family")
 
-    #function for viewing information about the deluxe room
     def deluxe_info(self):
-        #opening the file that will contain the information we want to show
+        """
+        This method will fetch and show information about the family rooms
+        @return: void
+        """
         self.closeRooms()
         self.remove()
-
+        """
+        caling methods to close the other rooms-informations
+        this will prevent errors since to things can't be shown at 
+        once
+        """
         for index, i in enumerate(self.deluxerooms):
             i.appear(self.roominformation_frame, (index+1), "deluxe")
 
-    #funtion that will close the information frame
     def closeinfoframe(self):
-        #the information frame will be destroyed, it will be created again when the show information button will be clicked
+        """
+        The informationframe will be destroyed and it will be
+        created again when the informationbutton is clicked
+        @return: void
+        """
         self.information_frame.destroy()
 
     def closecheckoutframe(self):
+        """
+        The checkoutframe will be destroyed and it will be
+        created again when the checkoutbutton is clicked
+        @return: void
+        """
         self.checkout_frame.destroy()
 
     def closeRooms(self):
@@ -380,11 +453,7 @@ class Main():
             if self.standardrooms == [] and self.deluxerooms == [] and self.familyrooms == [] and self.bookedrooms == []:
                 break
 
-        self.getrooms()
-
-    #function that books the room
-    def bookroom(self):
-        pass
+        self.getrooms() #caling the method getrooms so that new rooms are created
 
 #setting 'app' to equal main
 app=Main()
