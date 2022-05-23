@@ -34,3 +34,9 @@ så läggs det till kopior av samma rum över, vilket inte ska ske.
 7. Väder-appen behövde pip. Efter att vi hade lagt till väderappen i main-programmet krashade programmet ifall man ville starta det och inte hade pip
 
     Lösning: Vi lade till en try-accept sats. Om det inte går att importera väder-appen så hoppar programmet över det. Vilket stoppade programmet för att få error ifall pip saknades. 
+
+8. Rum som bokats togs inte bort från listorna över de lediga rummen, och visades därmed igen om 
+man klickade tillbaks till samma meny. 
+
+    Lösning: Köra en check på de olika textfilerna för att se vilka rum som var och inte var bokade varje gång
+    man klickade på ett menyval, och fixade till listorna utefter den informationen. 
