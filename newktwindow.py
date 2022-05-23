@@ -421,6 +421,10 @@ class Main():
         self.checkout_frame.destroy()
 
     def closeRooms(self):
+        """
+        Method to make sure every previous room is destroyed (not visible) when
+        a new tab of rooms is opened.
+        """
         try:
             for i in self.standardrooms:
                 i.booktext.destroy()
@@ -440,6 +444,11 @@ class Main():
             pass
 
     def remove(self):
+        """
+        Method to update the lists of bookable rooms every time
+        the user loads a new tab of bookable rooms. This is important since it makes
+        sure that rooms that are already booked don't show up when reloading a tab
+        """
         while True:
             for x in self.standardrooms:
                 self.standardrooms.remove(x)
