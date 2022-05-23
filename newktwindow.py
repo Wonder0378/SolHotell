@@ -12,6 +12,8 @@ import tkinter as tk
 from tkinter import *
 from bookunbook import Room
 from random import randint
+import turtle
+from turtle import *
 
 #trying to import the water-app 
 #if the user does not have pip the weather app will not work
@@ -176,6 +178,8 @@ class Main():
         @return: void
         """
         self.root.destroy()
+        from theturtle import Turtle
+        Turtle.run()
 
     def view(self):
         """
