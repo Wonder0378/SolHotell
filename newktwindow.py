@@ -127,28 +127,28 @@ class Main():
         self.bookedrooms = []
 
         #try: # Checks if there are any already registered rooms in the hotel
-        with open("SolHotell/rooms.txt", "r", encoding="utf-8") as text:
-            for i, line in enumerate(text.readlines()):
-                if line.endswith("\n"):
-                    line = line.replace("\n", "")
+        try:
+            with open("SolHotell/rooms.txt", "r", encoding="utf-8") as text:
+                for i, line in enumerate(text.readlines()):
+                    if line.endswith("\n"):
+                        line = line.replace("\n", "")
 
-                type = int(line[1:2])
-                rooms = int(line[3:4])
-                beds = int(line[5:6])
-                wifi = int(line[7:8])
-                bld = int(line[9:10])
-                fridge = int(line[11:12])
-                roomid = int(line[13:17])
+                    type = int(line[1:2])
+                    rooms = int(line[3:4])
+                    beds = int(line[5:6])
+                    wifi = int(line[7:8])
+                    bld = int(line[9:10])
+                    fridge = int(line[11:12])
+                    roomid = int(line[13:17])
 
-                #Checks wich type of room it is and displaying correct information
-                if type == 1:
-                    self.standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
-                elif type == 2:
-                    self.deluxerooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
-                elif type == 3:
-                    self.familyrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                    #Checks wich type of room it is and displaying correct information
+                    if type == 1:
+                        self.standardrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                    elif type == 2:
+                        self.deluxerooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
+                    elif type == 3:
+                        self.familyrooms.append(Room(type, rooms, beds, wifi, bld, fridge, roomid))
 
-        """
         except: # If file hasn't been created, or is empty, an exception will be made
             for i in range(1, 5): # And 4 rooms of every kind will be created
                 self.standardrooms.append(Room(1, randint(1, 4), randint(2, 4), randint(0, 1), 1, randint(0, 1), self.roomid()))
@@ -161,7 +161,7 @@ class Main():
                 i.register()
             for i in self.familyrooms:
                 i.register()
-        """
+        
 
     def run(self):
         """
@@ -338,8 +338,6 @@ class Main():
                         for i, room in enumerate(booked.readlines()):
                             if room.endswith("\n"):
                                 room = room.replace("\n", "")
-                            print(room[18:21])
-                            print(id)
                             if str(room[18:21]) == str(id):
                                 type = int(room[1:2])
                                 rooms = int(room[3:4])
@@ -348,7 +346,6 @@ class Main():
                                 bld = int(room[9:10])
                                 fridge = int(room[11:12])
                                 roomid = int(room[13:17])
-                                print("Appended")
                                 for i in self.bookedrooms:
                                     if roomid == i.roomid:
                                         pass
@@ -358,7 +355,7 @@ class Main():
 
                         for i in self.bookedrooms:
                             i.unbookappear(self.roominformation_frame, type, indate, outdate, id)
-                            print("wot")
+    
     
     
     def standard_info(self):
@@ -428,19 +425,19 @@ class Main():
             for i in self.standardrooms:
                 i.booktext.destroy()
         except:
-            print("???")
+            pass
 
         try:
             for i in self.familyrooms:
                 i.booktext.destroy()
         except:
-            print("???")
+            pass
 
         try:
             for i in self.deluxerooms:
                 i.booktext.destroy()
         except:
-            print("???")
+            pass
 
     def remove(self):
         while True:
