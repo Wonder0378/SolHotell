@@ -11,9 +11,21 @@ import turtle
 from turtle import *
 
 class Turtle:
+    """
+    class for showing goodbye-message
+    """
     def __init__(self) -> None:
+        """
+        a constructor for the message
+        @return: void
+        """
         pass
     def run(self):
+        """
+        method to run the turtle-script
+        @return: void
+        """
+        
         #preperation
         hideturtle()
         width(7)

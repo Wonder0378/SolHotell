@@ -178,8 +178,10 @@ class Main():
         @return: void
         """
         self.root.destroy()
+        #importing and runnig the method for goodbye-message
         from theturtle import Turtle
-        Turtle.run()
+        turtle = Turtle()
+        turtle.run()
 
     def view(self):
         """
@@ -247,7 +249,7 @@ class Main():
         self.checkout_frame = tk.Frame(self.root, background=self.white)
 
         #creating a button that will be closing the information frame
-        self.closecheckoutframe_button = tk.Button(self.checkout_frame, command=lambda : self.closecheckoutframe, text="x", fg="red", font=("Arial", 12))
+        self.closecheckoutframe_button = tk.Button(self.checkout_frame, command=self.closecheckoutframe, text="x", fg="red", font=("Arial", 12))
         self.closecheckoutframe_button.pack_forget()
 
         #a label for the name
